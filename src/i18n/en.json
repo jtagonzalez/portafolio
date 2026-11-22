@@ -1,0 +1,875 @@
+{
+  "meta": {
+    "siteTitle": "José González · Python backend, automation & AI",
+    "description": "Portfolio of José Fernando González Lozano, Python backend developer in Medellín, Colombia. A production marketplace with on-chain escrow, parallel scraping and Claude AI agents.",
+    "projectsTitle": "Projects",
+    "aboutTitle": "About me",
+    "notFoundTitle": "Page not found"
+  },
+  "nav": {
+    "skip": "Skip to content",
+    "home": "Home",
+    "projects": "Projects",
+    "about": "About",
+    "contact": "Contact",
+    "cv": "Download CV",
+    "langLabel": "Language",
+    "toLight": "Switch to light mode",
+    "toDark": "Switch to dark mode",
+    "menu": "Open menu"
+  },
+  "hero": {
+    "kicker": "$ whoami",
+    "hello": "Hi, I'm José González.",
+    "titleA": "I build Python backends that ",
+    "titleHl": "automate",
+    "titleB": " real-world processes.",
+    "pitch": "Backend developer in Medellín, Colombia. I build APIs with FastAPI and PostgreSQL, browser automation with Playwright and AI agents with Claude. I also run my own marketplace in production, with on-chain payments and escrow.",
+    "seeking": "Looking for a backend, automation or AI developer role (remote or in Medellín).",
+    "available": "Open to new opportunities",
+    "ctaProjects": "See projects",
+    "ctaCv": "Download CV (PDF)",
+    "ctaContact": "Get in touch",
+    "stats": [
+      {
+        "num": "1",
+        "lbl": "marketplace in production"
+      },
+      {
+        "num": "8",
+        "lbl": "sources queried in parallel"
+      },
+      {
+        "num": "3",
+        "lbl": "SEO languages (ES/EN/FR)"
+      }
+    ]
+  },
+  "terminal": {
+    "title": "jose@portfolio: ~",
+    "label": "Interactive terminal. Type a command and press Enter.",
+    "placeholder": "type 'help' and press Enter",
+    "welcome": "Welcome 👋 Try a command:",
+    "unknown": "Command not found: {cmd}. Type 'help'.",
+    "help": [
+      "projects        list projects",
+      "open <name>     open a project (e.g. open kamasmarket)",
+      "skills          show my stack",
+      "about           who I am",
+      "contact         contact links",
+      "cv              download my résumé",
+      "theme           toggle light/dark",
+      "lang es         cambiar a español",
+      "clear           clear the screen"
+    ],
+    "about": "Python backend dev · 7 years in environmental management → now I automate processes and build AI agents. Software Development Technologist (SENA).",
+    "opening": "Opening {name}…",
+    "notFound": "Couldn't find project '{slug}'. Try 'projects'.",
+    "cvDownloading": "Downloading CV…",
+    "themeChanged": "Theme switched.",
+    "skills": {
+      "Backend": "Python, FastAPI, Starlette, REST, SSE, WebSocket",
+      "Data": "PostgreSQL, Supabase, SQLite, pandas, Power BI, Grafana",
+      "AI": "Claude SDK (tool use, skills), OpenTelemetry",
+      "Automation": "Playwright, OpenCV, Tesseract OCR, PyAutoGUI",
+      "Cloud": "Docker, GCP (Cloud Run, VMs), Linux VPS",
+      "Web3": "Solidity, BSC, USDT, escrow",
+      "Frontend": "React, JavaScript, HTML, CSS, Bootstrap"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "Real systems: in production, in use at a company, or personal projects. Open a card to see the animated architecture, challenges and results.",
+    "featured": "Featured projects",
+    "seeAll": "See all projects",
+    "filterLabel": "Filter by technology",
+    "all": "All",
+    "clear": "Clear filters",
+    "matchAny": "Any",
+    "matchAll": "All",
+    "showing": "{n} of {total} projects",
+    "empty": "No project uses all of those technologies together. Try removing a filter.",
+    "viewDetail": "View details for {name}",
+    "status": {
+      "production": "In production",
+      "work": "Corlide · company",
+      "personal": "Personal project"
+    },
+    "showMore": "+{n} more technologies",
+    "showLess": "Show less"
+  },
+  "detail": {
+    "back": "Back to projects",
+    "onThisPage": "On this page",
+    "overview": "Overview",
+    "stack": "Tech stack",
+    "architecture": "Interactive architecture",
+    "demo": "Demo",
+    "challenges": "Challenges",
+    "achievements": "Results",
+    "problem": "Problem",
+    "solution": "Solution",
+    "role": "Role",
+    "period": "Period",
+    "live": "Visit live site",
+    "repo": "View code",
+    "privateRepo": "Private code (happy to walk through it in an interview)",
+    "mediaPending": "Sample images: real screenshots and videos of the project will go here.",
+    "openMedia": "Enlarge: {alt}",
+    "close": "Close",
+    "prevProject": "Previous",
+    "nextProject": "Next",
+    "anonymized": "All data shown is fictitious or anonymized."
+  },
+  "diagram": {
+    "intro": "Follow a request as it travels through the system. Use the buttons or arrow keys, or click any component.",
+    "play": "Play walkthrough",
+    "pause": "Pause",
+    "prev": "Previous step",
+    "next": "Next step",
+    "restart": "Restart",
+    "step": "Step {n} of {total}",
+    "goTo": "Go to step {n}",
+    "nodeInfo": "Component",
+    "svgLabel": "Architecture diagram of {name}"
+  },
+  "about": {
+    "title": "About me",
+    "intro": "I spent 7 years measuring air quality and noise and writing technical reports. Along the way I found that what I enjoyed most was organizing data and automating repetitive work. Now I do that as a developer: Python backends, automation and AI agents.",
+    "whatIBring": "What I bring",
+    "bring": [
+      "A production mindset: idempotency, retries, observability and Docker deployments.",
+      "Field experience: I understand real processes and the people who use them.",
+      "Fast learning: I went from zero to a production marketplace with on-chain payments."
+    ],
+    "timelineTitle": "Timeline",
+    "filterAll": "All",
+    "filterDev": "Software",
+    "filterEnv": "Environmental",
+    "timeline": [
+      {
+        "period": "2015 – 2016",
+        "type": "env",
+        "title": "Environmental & Territorial Management Technologist",
+        "org": "Politécnico Marco Fidel Suárez · internship at Colorquímica",
+        "text": "Wastewater treatment plant operations and environmental onboarding for new staff."
+      },
+      {
+        "period": "2016 – 2017",
+        "type": "env",
+        "title": "Engineering assistant",
+        "org": "GSA SAS",
+        "text": "Air quality monitoring and maintenance of technical equipment."
+      },
+      {
+        "period": "2018 – 2025",
+        "type": "env",
+        "title": "Environmental technician",
+        "org": "Conhintec SAS",
+        "text": "Air and noise monitoring, sample management and technical reports. I started automating spreadsheets and reports, and that's how I got into programming."
+      },
+      {
+        "period": "2022 – 2023",
+        "type": "dev",
+        "title": "First steps in programming",
+        "org": "Henry (bootcamp) · frontend courses",
+        "text": "JavaScript fundamentals, data structures, React, Node.js and SQL."
+      },
+      {
+        "period": "2024 – 2026",
+        "type": "dev",
+        "title": "Software Analysis & Development Technologist",
+        "org": "SENA · completed",
+        "text": "Software engineering, databases, testing, UML and agile methods."
+      },
+      {
+        "period": "Jan 2026 – now",
+        "type": "dev",
+        "now": true,
+        "title": "Automation & Python backend developer",
+        "org": "Corlide",
+        "text": "Claude AI agents, parallel Playwright scraping, ETL from AppSheet and SharePoint, Power BI and Grafana dashboards, and GCP deployments."
+      },
+      {
+        "period": "Sep 2026 – now",
+        "type": "dev",
+        "now": true,
+        "title": "Founder & developer",
+        "org": "KamasMarket (own product)",
+        "text": "P2P marketplace in production with a Solidity escrow, USDT and fiat payments, and SEO in 3 languages."
+      }
+    ],
+    "skillsTitle": "Tech stack",
+    "languages": "Languages: native Spanish · basic English (I read technical docs every day)."
+  },
+  "contact": {
+    "title": "Let's talk",
+    "text": "If you have a backend, automation or AI role open, or want to see the code of a private project, reach out.",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "cv": "Résumé (PDF)",
+    "location": "Medellín, Colombia · GMT-5"
+  },
+  "footer": {
+    "built": "Built with React, Vite, React Router and React-Bootstrap.",
+    "source": "Portfolio source"
+  },
+  "notFound": {
+    "title": "404 · This page doesn't exist",
+    "text": "The link may be broken. Go back home or check out the projects.",
+    "home": "Go home"
+  },
+  "projectsContent": {
+    "kamasmarket": {
+      "name": "KamasMarket",
+      "summary": "A P2P marketplace in production for buying and selling a video game's virtual currency, with a Solidity escrow, on-chain USDT payments and fiat gateways.",
+      "tags": [
+        "Payments",
+        "Web3",
+        "SEO ES/EN/FR"
+      ],
+      "role": "Founder and sole developer (full stack)",
+      "period": "Sep 2026 – now",
+      "description": [
+        "KamasMarket is a person-to-person marketplace for buying and selling kamas (the currency of Dofus Retro). Buyers and sellers don't know each other, so the money stays in escrow until delivery is confirmed.",
+        "The backend runs on FastAPI/Starlette with several uvicorn workers. PostgreSQL on Supabase holds the catalog, orders, internal wallets and the admin panel. Payments come in as on-chain-verified USDT, through a Solidity escrow contract on BNB Smart Chain, or through fiat/crypto gateways (Wompi and NOWPayments).",
+        "An automated delivery worker takes paid orders from an authenticated HTTP queue, completes the delivery and reports evidence. The backend then releases the funds to the seller. The site also has technical SEO in three languages (hreflang, dynamic sitemap) and runs on a Linux VPS with Docker."
+      ],
+      "challenges": [
+        {
+          "problem": "With several workers, two simultaneous requests could charge for or reserve the same offer twice.",
+          "solution": "Per-operation idempotency keys, row-locking transactions and unique constraints in PostgreSQL. A retry returns the same result instead of creating a duplicate."
+        },
+        {
+          "problem": "Neither side trusts the other to pay or deliver first.",
+          "solution": "A Solidity escrow contract: USDT stays locked and is only released when the backend confirms delivery. Timeouts and disputes trigger a refund."
+        },
+        {
+          "problem": "Choosing a network: on-chain fees can eat the margin on small orders.",
+          "solution": "I compared BSC (BEP-20) and Tron (TRC-20) costs and chose BSC for the escrow because of its EVM ecosystem and per-transaction cost."
+        },
+        {
+          "problem": "Getting organic traffic in three markets from one site.",
+          "solution": "Language-prefixed routes, hreflang tags, a dynamic sitemap.xml and indexing in Google Search Console."
+        }
+      ],
+      "achievements": [
+        "Live in production with real users at kamasmarket.com.",
+        "Zero duplicate charges thanks to idempotency and transactional locks.",
+        "15+ versioned SQL migrations (wallets, counter-offers, sanctions, multi-bot, security).",
+        "Telegram and WhatsApp notifications, plus Google sign-in.",
+        "Reproducible Docker deployment on a VPS with hardened SSH."
+      ],
+      "media": [
+        "Offer catalog with filters",
+        "USDT payment and escrow flow",
+        "Order admin panel"
+      ],
+      "diagram": {
+        "nodes": {
+          "user": [
+            "Buyer",
+            "browser"
+          ],
+          "web": [
+            "Web ES/EN/FR",
+            "HTML · JS · Bootstrap"
+          ],
+          "api": [
+            "FastAPI",
+            "multi-worker"
+          ],
+          "gw": [
+            "Wompi / NOWPayments",
+            "signed webhooks"
+          ],
+          "db": [
+            "PostgreSQL",
+            "Supabase"
+          ],
+          "escrow": [
+            "Solidity escrow",
+            "BSC · USDT"
+          ],
+          "notify": [
+            "Notifications",
+            "Telegram · WhatsApp"
+          ],
+          "worker": [
+            "Delivery worker",
+            "HTTP queue"
+          ]
+        },
+        "steps": [
+          {
+            "title": "The buyer picks an offer",
+            "text": "The site is served in the URL's language (/es, /en, /fr). The buyer picks a server, amount and payment method."
+          },
+          {
+            "title": "Create the order, no duplicates",
+            "text": "The browser sends the order with an idempotency key. If the network fails and the user retries, FastAPI returns the same order instead of creating a new one.",
+            "code": "POST /api/orders  Idempotency-Key: 7f3c…"
+          },
+          {
+            "title": "Reserve stock with a row lock",
+            "text": "Inside a transaction, PostgreSQL locks the offer so no other worker can sell it at the same time.",
+            "code": "SELECT … FROM offers WHERE id = $1 FOR UPDATE"
+          },
+          {
+            "title": "Payment arrives",
+            "text": "The gateway sends a signed webhook (fiat or crypto), or the backend verifies the USDT transfer on-chain with enough confirmations."
+          },
+          {
+            "title": "Funds in escrow",
+            "text": "The USDT is locked in the escrow contract. Nobody can touch it until delivery is confirmed or the deadline passes."
+          },
+          {
+            "title": "The worker claims the order",
+            "text": "The delivery worker polls an HTTP queue authenticated with a shared key and claims only paid orders.",
+            "code": "GET /software/queue  X-Software-Key: ••••"
+          },
+          {
+            "title": "Delivery confirmed",
+            "text": "The worker reports delivery with evidence (amounts and buyer verified). If something doesn't match, the order goes to manual review."
+          },
+          {
+            "title": "Release funds",
+            "text": "The backend releases the escrow and credits the net amount to the seller's internal wallet, which they can withdraw at any time."
+          },
+          {
+            "title": "Notify both sides",
+            "text": "Each user gets a notification on Telegram or WhatsApp, whichever they prefer."
+          }
+        ]
+      }
+    },
+    "cruces-interinstitucionales": {
+      "name": "Inter-agency data cross-check",
+      "summary": "A web system that queries 8 public data sources in parallel from a single ID number and streams progress live with Server-Sent Events.",
+      "tags": [
+        "Parallel scraping",
+        "Real time",
+        "Corlide"
+      ],
+      "role": "Lead developer (50 of 55 commits)",
+      "period": "2026",
+      "description": [
+        "A team of analysts had to log into 8 government portals one by one (health insurance, social programs, traffic, business registry, social security and notary records) to cross-check each case. Each lookup took several minutes.",
+        "I built a FastAPI app that runs all 8 lookups in parallel. Each scraper runs in its own thread with its own headless Chromium browser (Playwright), with per-source retry settings and parsers that turn different formats into one.",
+        "The browser gets live progress for each source through Server-Sent Events. At the end, the result is saved to PostgreSQL and a Word report is generated in the official format. It ships as a Docker container on GCP and as a desktop installer."
+      ],
+      "challenges": [
+        {
+          "problem": "Portals are slow and unreliable; one source going down blocked the whole check.",
+          "solution": "One thread and browser per source, per-source timeouts and retries with backoff (3 to 10, depending on the source). If one fails, the others keep going and the report marks what's pending."
+        },
+        {
+          "problem": "Analysts couldn't tell whether a lookup was still running or had hung.",
+          "solution": "SSE event streaming: each source reports 'queued', 'running', 'done' or 'error', and the UI updates without reloading."
+        },
+        {
+          "problem": "Every portal returns data in a different format (HTML, tables, PDF).",
+          "solution": "One parser per source with a shared output schema, so the report and the database don't depend on the portal."
+        },
+        {
+          "problem": "Some users' machines couldn't run Docker.",
+          "solution": "Two ways to ship it: a container on GCP and an .exe installer (Inno Setup) with a system tray icon."
+        }
+      ],
+      "achievements": [
+        "All 8 lookups run at the same time instead of one after another by hand.",
+        "Live progress for each source, with clear statuses for the analyst.",
+        "Word reports generated automatically in the official format.",
+        "Author of 50 of the repository's 55 commits."
+      ],
+      "media": [
+        "Lookup screen with per-source progress (sample data)",
+        "Generated report (anonymized data)"
+      ],
+      "diagram": {
+        "nodes": {
+          "user": [
+            "Analyst",
+            "browser"
+          ],
+          "ui": [
+            "Web UI",
+            "HTML · CSS · JS"
+          ],
+          "api": [
+            "FastAPI",
+            "async orchestrator"
+          ],
+          "pool": [
+            "8 scrapers",
+            "thread + Chromium each"
+          ],
+          "gov": [
+            "Public portals",
+            "8 sources"
+          ],
+          "parser": [
+            "Parsers",
+            "normalized output"
+          ],
+          "db": [
+            "PostgreSQL",
+            "asyncpg"
+          ],
+          "report": [
+            "Report .docx",
+            "python-docx"
+          ]
+        },
+        "steps": [
+          {
+            "title": "The analyst enters an ID",
+            "text": "They type the number and pick the sources to query. (All data in this portfolio is fictitious.)"
+          },
+          {
+            "title": "Create the job, open the stream",
+            "text": "FastAPI replies right away with a job id, and the browser opens an SSE connection to follow progress.",
+            "code": "POST /consultas → {job_id}  ·  GET /stream/{job_id}"
+          },
+          {
+            "title": "8 lookups in parallel",
+            "text": "The orchestrator starts each source in its own thread with an isolated headless Chromium. If one hangs, the rest aren't affected."
+          },
+          {
+            "title": "Automated browsing",
+            "text": "Playwright opens the portal, fills in the form and waits for the result. On timeouts or network errors it retries with backoff."
+          },
+          {
+            "title": "Normalize results",
+            "text": "Each parser turns the portal's HTML or table into a shared schema."
+          },
+          {
+            "title": "Partial result to the orchestrator",
+            "text": "Each source returns its result as soon as it finishes, without waiting for the others."
+          },
+          {
+            "title": "Live progress",
+            "text": "FastAPI emits an SSE event on every status change, and the UI shows each source's progress.",
+            "code": "event: source\\ndata: {\"sisben\": \"done\"}"
+          },
+          {
+            "title": "Save the check",
+            "text": "The combined result is saved to PostgreSQL with asyncpg for auditing and later queries."
+          },
+          {
+            "title": "Generate the report",
+            "text": "The official Word template is filled in and the analyst downloads it."
+          }
+        ]
+      }
+    },
+    "agente-ia-territorial": {
+      "name": "Territorial AI agent",
+      "summary": "A Claude-powered agent that runs statistical and spatial analysis on Medellín data and writes HTML reports with charts, with full tracing and metrics.",
+      "tags": [
+        "Generative AI",
+        "Tool use",
+        "Observability",
+        "Corlide"
+      ],
+      "role": "Developer (agent design, tools and observability)",
+      "period": "2026",
+      "description": [
+        "An agent that answers questions about the city (neighborhoods, districts, addresses, business activity) with real analysis, not just generated text.",
+        "It uses the Anthropic SDK with a tool-use loop. Claude chooses among 8 tools (data profiling, geocoding, spatial, temporal, statistical modeling, risk validation, address analysis and narrative), and Python runs them with pandas and GeoPandas and sends back the results.",
+        "Domain knowledge is organized into 'skills' (business diagnosis, territorial analysis, visualization and reporting). The output is an HTML report with Plotly charts, and the whole run is traced with OpenTelemetry and Prometheus."
+      ],
+      "challenges": [
+        {
+          "problem": "LLMs make up numbers when you ask them to do statistics directly.",
+          "solution": "All calculations go through deterministic Python tools. Claude only orchestrates and interprets, and every number in the report comes from a tool."
+        },
+        {
+          "problem": "Colombian addresses are written in many different ways ('Cra 43A # 1-50', 'KR 43 A 1 50').",
+          "solution": "An address normalization and validation tool runs before geocoding and flags doubtful records."
+        },
+        {
+          "problem": "There was no visibility into how much each agent run cost or how long it took.",
+          "solution": "OpenTelemetry traces for every tool and model call, plus token and latency metrics exported to Prometheus."
+        }
+      ],
+      "achievements": [
+        "8 reusable analysis tools with clear input and output contracts.",
+        "Automatically generated HTML reports, ready to share.",
+        "End-to-end observability: every agent step can be traced.",
+        "A skills architecture that adds new domains without touching the core."
+      ],
+      "media": [
+        "HTML report generated by the agent (sample data)",
+        "Trace of one run in the observability tool"
+      ],
+      "diagram": {
+        "nodes": {
+          "user": [
+            "Analyst",
+            "question"
+          ],
+          "agent": [
+            "Agent",
+            "tool-use loop"
+          ],
+          "skills": [
+            "Skills",
+            "domain knowledge"
+          ],
+          "claude": [
+            "Claude API",
+            "Messages + tools"
+          ],
+          "tools": [
+            "8 tools",
+            "stats · spatial"
+          ],
+          "data": [
+            "City data",
+            "pandas · GeoPandas"
+          ],
+          "report": [
+            "HTML report",
+            "Plotly"
+          ],
+          "otel": [
+            "Observability",
+            "OpenTelemetry"
+          ]
+        },
+        "steps": [
+          {
+            "title": "A question arrives",
+            "text": "For example: 'Which districts have the most food businesses, and how did that change over the last year?'"
+          },
+          {
+            "title": "Load the right skill",
+            "text": "The agent detects the domain (business diagnosis) and loads its instructions and examples."
+          },
+          {
+            "title": "Ask Claude",
+            "text": "The question is sent along with the definitions of the 8 tools (name, description and JSON schema).",
+            "code": "client.messages.create(model=…, tools=TOOLS, messages=…)"
+          },
+          {
+            "title": "Claude picks a tool",
+            "text": "The response comes back with stop_reason = tool_use, naming the tool to call and its parameters."
+          },
+          {
+            "title": "Run it in Python",
+            "text": "The agent actually runs the tool: deterministic calculations, no made-up numbers."
+          },
+          {
+            "title": "Analyze the data",
+            "text": "pandas and GeoPandas join the records with district boundaries and compute the statistics."
+          },
+          {
+            "title": "Send the result back",
+            "text": "The result goes back to Claude as a tool_result. The loop repeats until the model has what it needs to write the answer."
+          },
+          {
+            "title": "Build the report",
+            "text": "An HTML page is built with the write-up and interactive Plotly charts."
+          },
+          {
+            "title": "Measure everything",
+            "text": "Every model and tool call leaves a trace with its latency and token count."
+          }
+        ]
+      }
+    },
+    "bot-trading": {
+      "name": "Algorithmic trading bot",
+      "summary": "A Python bot that streams real-time candles over WebSocket, computes technical indicators, manages risk and logs telemetry for a visual dashboard.",
+      "tags": [
+        "Real time",
+        "Technical analysis",
+        "Personal project"
+      ],
+      "role": "Author",
+      "period": "2026",
+      "description": [
+        "A bot that trades binary options through a broker's API on a demo account. I built it to practice real-time data processing and designing systems with state.",
+        "It receives candles over WebSocket, turns them into DataFrames, computes technical indicators with pandas and NumPy and generates signals. A risk module sets the amount and limits for each trade.",
+        "Every trade and its result go into SQLite (WAL mode) and a telemetry file. A React/HTML dashboard shows the equity curve, win rate and live status."
+      ],
+      "challenges": [
+        {
+          "problem": "The WebSocket connection dropped silently, leaving the bot 'alive' with no data.",
+          "solution": "I pinned the compatible client version and added a heartbeat, automatic reconnection and a connection test script."
+        },
+        {
+          "problem": "The dashboard read the database while the bot was writing, which caused locks.",
+          "solution": "SQLite in WAL mode, so reads can run at the same time as writes without blocking them."
+        }
+      ],
+      "achievements": [
+        "Full telemetry for every trade (signal, amount, result and latency).",
+        "Real-time visual dashboard.",
+        "Configurable risk management with loss limits."
+      ],
+      "media": [
+        "Bot telemetry dashboard"
+      ],
+      "diagram": {
+        "nodes": {
+          "broker": [
+            "Broker API",
+            "WebSocket · demo"
+          ],
+          "collector": [
+            "Collector",
+            "candles → DataFrame"
+          ],
+          "ta": [
+            "Technical analysis",
+            "pandas · NumPy"
+          ],
+          "risk": [
+            "Risk management",
+            "size & limits"
+          ],
+          "db": [
+            "SQLite (WAL)",
+            "telemetry"
+          ],
+          "dash": [
+            "Dashboard",
+            "React · HTML"
+          ]
+        },
+        "steps": [
+          {
+            "title": "Real-time candles",
+            "text": "The broker streams candles over WebSocket."
+          },
+          {
+            "title": "Into a DataFrame",
+            "text": "The collector keeps a sliding window of candles in pandas."
+          },
+          {
+            "title": "Signal",
+            "text": "Indicators are computed and a buy, sell or no-trade signal comes out."
+          },
+          {
+            "title": "Order",
+            "text": "The risk module sets the amount, checks the daily limits and sends the order to the demo account."
+          },
+          {
+            "title": "Log it",
+            "text": "The trade and its result are saved to SQLite."
+          },
+          {
+            "title": "Visualize",
+            "text": "The dashboard reads the stats and shows the equity curve and win rate."
+          }
+        ]
+      }
+    },
+    "bot-ruleta": {
+      "name": "Live OCR automation",
+      "summary": "A desktop automation that reads live results with OCR, applies a configurable strategy, and is controlled from a Tkinter window and a web stats panel.",
+      "tags": [
+        "Computer vision",
+        "OCR",
+        "Personal project"
+      ],
+      "role": "Author",
+      "period": "2026",
+      "description": [
+        "An automation for a live roulette table. It reads the strip of results on screen with OCR, applies a configurable pattern strategy and clicks on the interface.",
+        "The interesting part is the engineering around it: JSON screen profiles per resolution with a guided calibrator, 'dry' (watch only) and 'visual' (moves the mouse without acting) modes, a scheduler that launches it on a timetable, and a web panel with stats from the logs.",
+        "Day to day it's controlled from a Tkinter window, and it refuses to start if the screen resolution doesn't match a calibrated profile."
+      ],
+      "challenges": [
+        {
+          "problem": "OCR misread some numbers because of the table's brightness and animations.",
+          "solution": "OpenCV preprocessing (region crop, thresholding and upscaling) and validation of each number before using it."
+        },
+        {
+          "problem": "Coordinates changed with every monitor and resolution.",
+          "solution": "JSON screen profiles, a guided calibrator and a tool that compares the configured positions with the real screen."
+        },
+        {
+          "problem": "Testing without risking anything.",
+          "solution": "'Dry' and 'visual' modes, plus a command to verify clicks before running for real."
+        }
+      ],
+      "achievements": [
+        "Multi-resolution profiles with guided calibration.",
+        "Timetable-based scheduler that prevents duplicate processes.",
+        "Web stats panel built from the logs."
+      ],
+      "media": [
+        "Tkinter control window"
+      ],
+      "diagram": {
+        "nodes": {
+          "sched": [
+            "Scheduler",
+            "timetable & cycles"
+          ],
+          "profile": [
+            "Screen profile",
+            "JSON per resolution"
+          ],
+          "screen": [
+            "Screen",
+            "live table"
+          ],
+          "ocr": [
+            "OCR",
+            "OpenCV + Tesseract"
+          ],
+          "engine": [
+            "Strategy engine",
+            "configurable rules"
+          ],
+          "clicks": [
+            "Executor",
+            "PyAutoGUI"
+          ],
+          "stats": [
+            "Logs",
+            "CSV + logs"
+          ],
+          "control": [
+            "Panel",
+            "Tkinter · web"
+          ]
+        },
+        "steps": [
+          {
+            "title": "A cycle starts",
+            "text": "The scheduler launches the bot on its configured timetable and prevents duplicate processes."
+          },
+          {
+            "title": "Load the profile",
+            "text": "The calibrated regions and coordinates for the current resolution are loaded."
+          },
+          {
+            "title": "Capture",
+            "text": "The results region is cropped from the screen."
+          },
+          {
+            "title": "Read the number",
+            "text": "OpenCV cleans up the image, Tesseract reads it, and the result is validated."
+          },
+          {
+            "title": "Decide and act",
+            "text": "The engine applies the strategy. In dry mode it only logs; in visual mode it moves the mouse without acting."
+          },
+          {
+            "title": "Log",
+            "text": "Every spin and every decision is written to CSV and the logs."
+          },
+          {
+            "title": "View stats",
+            "text": "The panel shows the current status and historical stats."
+          }
+        ]
+      }
+    },
+    "bot-mineria": {
+      "name": "Vision-based automation bot",
+      "summary": "A ~9,900-line desktop agent that runs a full gather-and-sell loop by only looking at the screen: template matching, OCR and a state machine with a watchdog.",
+      "tags": [
+        "Computer vision",
+        "State machine",
+        "Personal project"
+      ],
+      "role": "Author",
+      "period": "2026",
+      "description": [
+        "A bot for a video game that uses no APIs and doesn't read memory: it makes every decision by looking at the screen, like a person would.",
+        "It finds elements with OpenCV template matching and pixel checks, reads prices with Tesseract, and runs a full loop: gather, go to the bank, sell at the market above a minimum price, and come back.",
+        "To run for hours unattended, it has a watchdog thread that restarts the game after 5 minutes without progress, detection of disconnects and loading screens, and a timestamped log. I documented its architecture in a function map."
+      ],
+      "challenges": [
+        {
+          "problem": "The bot got stuck in odd states (disconnects, pop-ups).",
+          "solution": "A safety function called inside every loop, plus a watchdog on a separate thread that forces a restart when there's no progress."
+        },
+        {
+          "problem": "A 9,900-line file that was hard to maintain.",
+          "solution": "An architecture document with the overall flow and an index of functions by responsibility, as a first step toward splitting it into modules."
+        },
+        {
+          "problem": "Selling too cheap because of a misread price.",
+          "solution": "Validated OCR and a per-resource MIN_PRICE: if it isn't met, the sale is blocked."
+        }
+      ],
+      "achievements": [
+        "Runs for hours unattended and recovers on its own.",
+        "The full gather → bank → market loop is automated.",
+        "Documented architecture to keep it maintainable."
+      ],
+      "media": [
+        "Bot log and element detection"
+      ],
+      "diagram": {
+        "nodes": {
+          "screen": [
+            "Game window",
+            "1280×1024"
+          ],
+          "vision": [
+            "Vision",
+            "matchTemplate + pixels"
+          ],
+          "fsm": [
+            "State machine",
+            "gather → sell"
+          ],
+          "ocr": [
+            "Price OCR",
+            "Tesseract"
+          ],
+          "actions": [
+            "Actions",
+            "PyAutoGUI"
+          ],
+          "watchdog": [
+            "Watchdog",
+            "thread · 5 min"
+          ],
+          "log": [
+            "Log",
+            "bot_log.txt"
+          ]
+        },
+        "steps": [
+          {
+            "title": "Capture the screen",
+            "text": "The relevant region of the game window is grabbed."
+          },
+          {
+            "title": "Recognize the state",
+            "text": "Template matching and pixel checks find where the character is and what's on screen."
+          },
+          {
+            "title": "Act",
+            "text": "The state machine decides the next click or move."
+          },
+          {
+            "title": "Read the price",
+            "text": "At the market, the current price is read with OCR."
+          },
+          {
+            "title": "Validate the sale",
+            "text": "If the price is below MIN_PRICE, the sale is blocked."
+          },
+          {
+            "title": "Self-recovery",
+            "text": "After 5 minutes without progress, the watchdog restarts the game and reconnects."
+          },
+          {
+            "title": "Log",
+            "text": "Everything goes into a timestamped log for debugging."
+          }
+        ]
+      }
+    }
+  }
+}
