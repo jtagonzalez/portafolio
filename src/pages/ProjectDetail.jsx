@@ -53,7 +53,7 @@ export default function ProjectDetail() {
               </dl>
               <div className="d-flex flex-wrap gap-2">
                 {project.links.live && (
-                  <a href={project.links.live} target="_blank" rel="noopener noreferrer" className="btn btn-accent d-inline-flex align-items-center gap-2">
+                  <a href={project.links.live.replace('{lang}', lang)} target="_blank" rel="noopener noreferrer" className="btn btn-accent d-inline-flex align-items-center gap-2">
                     <External /> {t('detail.live')}
                   </a>
                 )}

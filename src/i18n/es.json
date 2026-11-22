@@ -273,6 +273,7 @@
       ],
       "achievements": [
         "Plataforma en producción con usuarios reales en kamasmarket.com.",
+        "Cada orden tiene su propio contrato inteligente (BEP-20), que solo puede liberar el pago al vendedor o devolverlo al comprador; además del mercado de kamas, hay mercadillo de ítems y modo mercante con validación exacta de estadísticas.",
         "Cero cobros duplicados gracias a la idempotencia y a los bloqueos transaccionales.",
         "Más de 15 migraciones SQL versionadas: billeteras, contraofertas, sanciones, multibot y seguridad.",
         "Notificaciones por Telegram y WhatsApp, y login con Google.",
@@ -282,9 +283,10 @@
         "Durante la construcción del agente se detectaron y corrigieron un leak de datos de contacto en endpoints públicos y un bug que inflaba el conteo de órdenes en curso."
       ],
       "media": [
-        "Catálogo de ofertas con filtros",
-        "Flujo de pago con USDT y escrow",
-        "Panel de administración de órdenes"
+        "Inicio en producción (kamasmarket.com): ofertas de kamas y dinero, mercadillo de ítems y compra protegida por contrato",
+        "Ofertas de kamas y de dinero con precio por millón, filtros por servidor y moneda (nombres de usuario difuminados)",
+        "Mercadillo de ítems con interfaz al estilo del juego: estadísticas exactas del ítem y compra protegida (vendedor difuminado)",
+        "Centro de ayuda: entrega, pagos desde wallet, red BEP-20 vs. TRC-20 y recuperación de pagos tardíos"
       ],
       "diagram": {
         "nodes": {

@@ -273,6 +273,7 @@
       ],
       "achievements": [
         "Live in production with real users at kamasmarket.com.",
+        "Every order has its own smart contract (BEP-20) that can only release the payment to the seller or refund the buyer; besides the kamas market, there's an item marketplace and a merchant mode with exact stat validation.",
         "Zero duplicate charges thanks to idempotency and transactional locks.",
         "15+ versioned SQL migrations (wallets, counter-offers, sanctions, multi-bot, security).",
         "Telegram and WhatsApp notifications, plus Google sign-in.",
@@ -282,9 +283,10 @@
         "While building the agent, a contact-data leak in public endpoints and a bug that inflated the count of in-progress orders were found and fixed."
       ],
       "media": [
-        "Offer catalog with filters",
-        "USDT payment and escrow flow",
-        "Order admin panel"
+        "Live home page (kamasmarket.com): kamas and money offers, item marketplace and contract-protected purchases",
+        "Kamas and money offers with price per million, server and currency filters (usernames blurred)",
+        "Item marketplace with a game-style interface: exact item stats and protected purchase (seller blurred)",
+        "Help center: delivery, wallet payments, BEP-20 vs. TRC-20 network and recovering late payments"
       ],
       "diagram": {
         "nodes": {

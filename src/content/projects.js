@@ -15,14 +15,15 @@ export const PROJECTS = [
     featured: true,
     status: 'production',
     techs: ['python', 'fastapi', 'postgresql', 'supabase', 'deepseek', 'solidity', 'bsc', 'usdt', 'redis', 'cloudflare', 'wompi', 'nowpayments', 'docker', 'linux', 'javascript', 'bootstrap', 'telegram'],
-    cover: '/media/kamasmarket/cover.svg',
+    cover: '/media/kamasmarket/cover.webp',
     media: [
-      { type: 'image', src: ph('kamasmarket', 1) },
-      { type: 'image', src: ph('kamasmarket', 2) },
-      { type: 'image', src: ph('kamasmarket', 3) },
-      // { type: 'video', src: '/media/kamasmarket/compra.mp4', poster: '/media/kamasmarket/compra.webp' },
+      { type: 'image', src: '/media/kamasmarket/inicio.webp' },
+      { type: 'image', src: '/media/kamasmarket/ofertas.webp' },
+      { type: 'image', src: '/media/kamasmarket/mercadillo.webp' },
+      { type: 'image', src: '/media/kamasmarket/ayuda.webp' },
     ],
-    links: { live: 'https://kamasmarket.com/en', repo: null },
+    // {lang} se reemplaza por el idioma del portafolio (es/en)
+    links: { live: 'https://kamasmarket.com/{lang}', repo: null },
     diagram: {
       nodes: [
         { id: 'user', x: 90, y: 200 },
