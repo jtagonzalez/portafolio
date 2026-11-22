@@ -630,7 +630,7 @@
     },
     "bot-trading": {
       "name": "Sistema de trading algorítmico con ML",
-      "summary": "5 bots en paralelo con modelos de machine learning validados por walk-forward y pruebas estadísticas, 25 mil predicciones registradas en SQLite y un panel web propio para controlarlos y auditar cada operación.",
+      "summary": "3 bots activos en paralelo con modelos de machine learning validados por walk-forward y pruebas estadísticas, 25 mil predicciones registradas en SQLite y un panel web propio para controlarlos y auditar cada operación.",
       "tags": [
         "Machine learning",
         "Validación estadística",
@@ -640,15 +640,11 @@
       "role": "Autor (ML, backend, análisis y panel web)",
       "period": "Ene 2026 – hoy",
       "description": [
-        "Empezó como un bot sencillo y terminó siendo un laboratorio completo de trading algorítmico sobre la API de un broker (forex y cripto). Corren 5 bots en paralelo, cada uno con su supervisor y un watchdog que relanza la conexión si la API se cuelga.",
+        "Empezó como un bot sencillo y terminó siendo un laboratorio completo de trading algorítmico sobre la API de un broker (forex y cripto). Corren 3 bots en paralelo, cada uno con su supervisor y un watchdog que relanza la conexión si la API se cuelga.",
         "El núcleo es un modelo de gradient boosting (scikit-learn) entrenado con 16 indicadores técnicos y validado con walk-forward: se entrena con el pasado y se evalúa solo con datos que nunca vio. Un edge solo se acepta si su tasa de acierto supera el punto de equilibrio, 1 / (1 + payout), con un test de permutación significativo.",
-        "Todo queda en SQLite: cada arranque, cada predicción (operada o descartada) y cada operación con su latencia y payout real. Un panel web propio (servidor HTTP en Python, unas 5.200 líneas) arranca y detiene bots, muestra resultados por modelo y genera la gráfica de cada operación con lo que el bot vio al decidir. Los resultados se miden contra el punto de equilibrio y no contra el P&L a secas. Cada estrategia pasa por tres etapas: backtest sobre velas históricas (enero a noviembre de 2026), cuenta de práctica y, solo si el resultado se sostiene, cuenta real. Hoy solo ETH 5m (estocástico) opera en cuenta real, y replica lo que mostró su backtest. ETH 5m RSI y BTC 5m siguen en práctica. Las dos variantes de Weis llegaron a real, no sostuvieron su backtest y se devolvieron a práctica: el proceso también sirve para frenar a tiempo."
+        "Todo queda en SQLite: cada arranque, cada predicción (operada o descartada) y cada operación con su latencia y payout real. Un panel web propio (servidor HTTP en Python, unas 5.200 líneas) arranca y detiene bots, muestra resultados por modelo y genera la gráfica de cada operación con lo que el bot vio al decidir. Los resultados se miden contra el punto de equilibrio y no contra el P&L a secas. Cada estrategia pasa por tres etapas: backtest sobre velas históricas (enero a noviembre de 2026), cuenta de práctica y, solo si el resultado se sostiene, cuenta real. Hoy solo ETH 5m (estocástico) opera en cuenta real, y replica lo que mostró su backtest. ETH 5m RSI y BTC 5m siguen en práctica."
       ],
       "challenges": [
-        {
-          "problem": "Una estrategia (Weis CALL) tuvo 65,5 % de acierto en el backtest y en cuenta real cayó a 39 %.",
-          "solution": "El seguimiento contra el punto de equilibrio lo detectó en pocas semanas (52 operaciones) y el bot se devolvió a práctica. Ahora ninguna estrategia pasa a real sin una etapa previa en práctica que confirme el backtest."
-        },
         {
           "problem": "Un backtest mostraba 11 puntos de acierto que en realidad no existían.",
           "solution": "Encontré el sesgo: el backtester contaba los empates a favor. Desde entonces toda estrategia se contrasta primero con la tasa base del mercado crudo."
@@ -677,7 +673,7 @@
       ],
       "media": [
         "Cuenta real: P&L acumulado del bot ETH 5m (estocástico), una marca por operación: 28 operaciones, 60,7 % de acierto, caída máxima de $3",
-        "Panel web propio: ETH 5m RSI con 4.395 operaciones de backtest sobre datos históricos (58,2 % frente a un equilibrio de 53,76 %); hoy opera en práctica. Los montos de la barra superior incluyen el backtest",
+        "Panel web propio: ETH 5m RSI con 4.395 operaciones de backtest sobre datos históricos (58,2 % frente a un equilibrio de 53,76 %); hoy opera en práctica",
         "El panel se autoevalúa: '¿sirve el umbral de confianza?' compara el acierto de lo operado contra lo descartado",
         "Registro de operaciones en vivo con precio de entrada y salida, movimiento y resultado",
         "Operación en vivo del modelo ML (BTC/USD, 15 min) con los 16 indicadores que vio al decidir",
@@ -695,7 +691,7 @@
             "WebSocket"
           ],
           "bots": [
-            "5 bots",
+            "3 bots",
             "supervisor + watchdog"
           ],
           "model": [
@@ -781,20 +777,6 @@
             "label": "Práctica",
             "backtest": "56,7 % (6.109 ops, ene–nov 2026)",
             "live": "Práctica: 1 operación. Muestra insuficiente."
-          },
-          {
-            "bot": "Weis CALL",
-            "mode": "demoted",
-            "label": "Devuelto a práctica",
-            "backtest": "65,5 % (287 ops, jul–oct 2026)",
-            "live": "Real: 20 ganadas / 31 perdidas = 39 %, −$35,25. El backtest no se sostuvo y volvió a práctica."
-          },
-          {
-            "bot": "Weis CALL M (progresión)",
-            "mode": "demoted",
-            "label": "Devuelto a práctica",
-            "backtest": "64,5 % (293 ops, jul–oct 2026)",
-            "live": "Real: 5 pérdidas en un día y se detuvo. Práctica: 17 ganadas / 20 perdidas."
           }
         ]
       }
