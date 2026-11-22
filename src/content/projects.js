@@ -141,7 +141,7 @@ export const PROJECTS = [
       { type: 'image', src: '/media/bot-trading/forense-bug-martingala.webp' },
       { type: 'image', src: '/media/bot-trading/backtest-descartado.webp' },
     ],
-    links: { live: null, repo: 'https://github.com/jtagonzalez/bot-trading' },
+    links: { live: null, repo: null },
     diagram: {
       nodes: [
         { id: 'lab', x: 262, y: 58 },
