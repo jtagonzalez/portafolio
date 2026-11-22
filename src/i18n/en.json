@@ -71,6 +71,7 @@
       "Backend": "Python, FastAPI, Starlette, REST, SSE, WebSocket",
       "Data": "PostgreSQL, Supabase, SQLite, pandas, Power BI, Grafana",
       "AI": "Claude SDK (tool use, skills), OpenTelemetry",
+      "AI-assisted dev": "Claude Code, OpenCode, OpenSpec, custom skills and CLAUDE.md",
       "Automation": "Playwright, OpenCV, Tesseract OCR, PyAutoGUI",
       "Cloud": "Docker, GCP (Cloud Run, VMs), Linux VPS",
       "Web3": "Solidity, BSC, USDT, escrow",
@@ -204,7 +205,55 @@
       }
     ],
     "skillsTitle": "Tech stack",
-    "languages": "Languages: native Spanish · basic English (I read technical docs every day)."
+    "languages": "Languages: native Spanish · basic English (I read technical docs every day).",
+    "aiWorkflow": {
+      "kicker": "$ cat CLAUDE.md",
+      "title": "How I work with AI",
+      "intro": "I code with AI agents (mostly Claude Code) every day, but with a method: I set the context, the rules and the spec; the agent implements step by step; and I verify with tests and real data before anything reaches production.",
+      "items": [
+        {
+          "icon": "📘",
+          "title": "Context before code",
+          "text": "Every repository has a CLAUDE.md or AGENTS.md with the architecture, the current state and rules the agent must follow: errors must stay visible (no silent catches or fallbacks that hide them) and nothing gets committed or pushed unless I ask.",
+          "evidence": "KamasMarket · Corlide data pipelines"
+        },
+        {
+          "icon": "📐",
+          "title": "Spec-driven development",
+          "text": "With OpenSpec, every change starts as a proposal with a spec and a task list; the agent implements it step by step, and at the end it's verified and archived. One data repository alone has 16 changes managed this way.",
+          "evidence": "OpenSpec · /opsx commands: new, apply, verify, archive"
+        },
+        {
+          "icon": "🧩",
+          "title": "Skills with business knowledge",
+          "text": "I give the agent domain knowledge as reusable skills: the canonical catalog of PostgreSQL tables, a data-quality expert and FastAPI conventions. That way it doesn't guess which table to use or how to name things.",
+          "evidence": "14 skills in a reporting repository"
+        },
+        {
+          "icon": "📝",
+          "title": "A log and handoff for every session",
+          "text": "Every session ends with a document saying what was done, what was verified, what's fragile and what's left. The next session, mine or the agent's, starts by reading it, so context isn't lost from one day to the next.",
+          "evidence": "KamasMarket: 39 technical docs, 9 of them session logs and handoffs"
+        },
+        {
+          "icon": "✅",
+          "title": "AI proposes, I verify",
+          "text": "Nothing reaches production without testing: CI tests, diff review and real orders with small amounts. In KamasMarket, the first real order exposed three bugs that were invisible in code review, which is why I test with real data.",
+          "evidence": "GitHub Actions · real-data testing"
+        }
+      ],
+      "toolsLabel": "Tools",
+      "tools": [
+        "Claude Code",
+        "OpenCode",
+        "OpenSpec",
+        "CLAUDE.md / AGENTS.md",
+        "Custom skills & commands",
+        "GitHub Actions",
+        "VS Code"
+      ],
+      "footnote": "I built this portfolio with Claude Code too, following the same method."
+    }
   },
   "contact": {
     "title": "Let's talk",

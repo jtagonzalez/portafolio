@@ -71,6 +71,7 @@
       "Backend": "Python, FastAPI, Starlette, REST, SSE, WebSocket",
       "Datos": "PostgreSQL, Supabase, SQLite, pandas, Power BI, Grafana",
       "IA": "Claude SDK (tool use, skills), OpenTelemetry",
+      "IA para programar": "Claude Code, OpenCode, OpenSpec, skills y CLAUDE.md propios",
       "Automatización": "Playwright, OpenCV, Tesseract OCR, PyAutoGUI",
       "Cloud": "Docker, GCP (Cloud Run, VMs), VPS Linux",
       "Web3": "Solidity, BSC, USDT, escrow",
@@ -204,7 +205,55 @@
       }
     ],
     "skillsTitle": "Stack técnico",
-    "languages": "Idiomas: español nativo · inglés básico (leo documentación técnica a diario)."
+    "languages": "Idiomas: español nativo · inglés básico (leo documentación técnica a diario).",
+    "aiWorkflow": {
+      "kicker": "$ cat CLAUDE.md",
+      "title": "Cómo trabajo con IA",
+      "intro": "Programo con agentes de IA (sobre todo Claude Code) como parte diaria del trabajo, pero con método: yo defino el contexto, las reglas y la especificación; la IA implementa por pasos; y yo verifico con pruebas y datos reales antes de que algo llegue a producción.",
+      "items": [
+        {
+          "icon": "📘",
+          "title": "Contexto antes que código",
+          "text": "Cada repositorio tiene un CLAUDE.md o AGENTS.md con la arquitectura, el estado actual y reglas que el agente debe cumplir: los errores tienen que verse (nada de capturas silenciosas ni fallbacks que los tapen) y no se hace commit ni push sin que yo lo pida.",
+          "evidence": "KamasMarket · pipelines de datos de Corlide"
+        },
+        {
+          "icon": "📐",
+          "title": "Desarrollo guiado por especificaciones",
+          "text": "Con OpenSpec, cada cambio empieza como una propuesta con especificación y lista de tareas; el agente lo implementa paso a paso y al final se verifica y se archiva. En un solo repositorio de datos van 16 cambios gestionados así.",
+          "evidence": "OpenSpec · comandos /opsx: nuevo, aplicar, verificar, archivar"
+        },
+        {
+          "icon": "🧩",
+          "title": "Skills con conocimiento del negocio",
+          "text": "Le doy al agente el conocimiento del dominio como skills reutilizables: el catálogo canónico de tablas de PostgreSQL, un experto en calidad de datos y convenciones de FastAPI. Así no adivina qué tabla usar ni cómo nombrar las cosas.",
+          "evidence": "14 skills en un repositorio de reportes"
+        },
+        {
+          "icon": "📝",
+          "title": "Bitácora y handoff de cada sesión",
+          "text": "Cada sesión cierra con un documento que dice qué se hizo, qué se verificó, qué es frágil y qué falta. La siguiente sesión, mía o del agente, empieza leyéndolo, así el contexto no se pierde entre días.",
+          "evidence": "KamasMarket: 39 documentos técnicos, 9 de ellos bitácoras de sesión y handoffs"
+        },
+        {
+          "icon": "✅",
+          "title": "La IA propone, yo verifico",
+          "text": "Nada pasa a producción sin pruebas: tests en CI, revisión del diff y órdenes reales con montos pequeños. En KamasMarket, la primera orden real destapó tres fallos que eran invisibles en la revisión de código; por eso pruebo con datos reales.",
+          "evidence": "GitHub Actions · pruebas con datos reales"
+        }
+      ],
+      "toolsLabel": "Herramientas",
+      "tools": [
+        "Claude Code",
+        "OpenCode",
+        "OpenSpec",
+        "CLAUDE.md / AGENTS.md",
+        "Skills y comandos propios",
+        "GitHub Actions",
+        "VS Code"
+      ],
+      "footnote": "Este portafolio también lo construí con Claude Code, siguiendo el mismo método."
+    }
   },
   "contact": {
     "title": "¿Hablamos?",

@@ -2,6 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap'
 import { useI18n } from '../context/i18n.jsx'
 import { useMeta } from '../hooks/useMeta.js'
 import Timeline from '../components/Timeline.jsx'
+import AIWorkflow from '../components/AIWorkflow.jsx'
 
 export default function About() {
   const { t } = useI18n()
@@ -31,6 +32,7 @@ export default function About() {
           </Row>
         </Container>
       </section>
+      <AIWorkflow />
       <section className="section pt-0" aria-labelledby="skills-title">
         <Container>
           <h2 id="skills-title" className="section-title mb-4">{t('about.skillsTitle')}</h2>
