@@ -193,7 +193,7 @@ h3,
   }
   > .container {
     flex-wrap: nowrap;
-    @media (max-width: 767.98px) {
+    @media (max-width: 991.98px) {
       flex-wrap: wrap;
     }
   }
@@ -659,6 +659,39 @@ h3,
   &:hover img {
     filter: brightness(1.05);
   }
+}
+// Miniatura en vivo de un reporte HTML: iframe renderizado a 4× y reducido
+.html-thumb {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #fff;
+  pointer-events: none;
+  iframe {
+    width: 400%;
+    height: 400%;
+    border: 0;
+    transform: scale(0.25);
+    transform-origin: 0 0;
+  }
+}
+.live-badge {
+  position: absolute;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  background: var(--accent);
+  color: #0d1626;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+}
+.html-full {
+  width: 100%;
+  height: min(75vh, 900px);
+  border: 1px solid var(--border);
+  border-radius: 0.6rem;
+  background: #fff;
 }
 .media-modal .modal-content {
   background: var(--surface);

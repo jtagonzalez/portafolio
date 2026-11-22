@@ -46,25 +46,25 @@ export default function SiteNavbar() {
   const [open, setOpen] = useState(false)
   const close = () => setOpen(false)
   return (
-    <Navbar expand="md" sticky="top" className="site-nav" expanded={open} onToggle={setOpen}>
+    <Navbar expand="lg" sticky="top" className="site-nav" expanded={open} onToggle={setOpen}>
       <Container>
         <Navbar.Brand as={Link} to={`/${lang}`} onClick={close} aria-label={`${SITE.shortName} · ${t('nav.home')}`}>
           <img src="/favicon.svg" alt="" width="28" height="28" />
           <span className="brand-name">{SITE.shortName}</span>
         </Navbar.Brand>
-        <div className="d-flex align-items-center gap-2 order-md-last">
+        <div className="d-flex align-items-center gap-2 order-lg-last">
           <LangSwitch />
           <ThemeToggle />
           <Navbar.Toggle aria-controls="main-nav" aria-label={t('nav.menu')} />
         </div>
         <Navbar.Collapse id="main-nav">
-          <Nav className="mx-md-auto my-2 my-md-0">
+          <Nav className="mx-lg-auto my-2 my-lg-0">
             <Nav.Link as={NavLink} to={`/${lang}`} end onClick={close}>{t('nav.home')}</Nav.Link>
             <Nav.Link as={NavLink} to={`/${lang}/projects`} onClick={close}>{t('nav.projects')}</Nav.Link>
             <Nav.Link as={NavLink} to={`/${lang}/about`} onClick={close}>{t('nav.about')}</Nav.Link>
             <Nav.Link href="#contact" onClick={close}>{t('nav.contact')}</Nav.Link>
           </Nav>
-          <a className="btn btn-accent btn-sm d-inline-flex align-items-center gap-1 mb-2 mb-md-0 me-md-2" href={SITE.cv} download onClick={close}>
+          <a className="btn btn-accent btn-sm d-inline-flex align-items-center gap-1 mb-2 mb-lg-0 me-lg-2" href={SITE.cv} download onClick={close}>
             <Download /> {t('nav.cv')}
           </a>
         </Navbar.Collapse>

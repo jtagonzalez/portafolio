@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Comparativo - Ingresos por Comuna</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', Arial; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; padding: 20px; }
+        .dashboard { max-width: 1200px; margin: 0 auto; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 15px; margin-bottom: 20px; text-align: center; }
+        .header h1 { font-size: 2em; margin-bottom: 10px; }
+        
+        .kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 20px; }
+        .kpi { background: white; padding: 25px; border-radius: 12px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .kpi-value { font-size: 2.5em; font-weight: bold; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .kpi-label { color: #666; margin-top: 5px; }
+        
+        .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+        .card { background: white; padding: 25px; border-radius: 12px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        .card h3 { color: #2c3e50; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #667eea; }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 14px; }
+        th { background: #2c3e50; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #eee; }
+        tr:hover { background: #f8f9fa; }
+        
+        .footer { text-align: center; color: #aaa; margin-top: 20px; padding: 15px; }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <div class="header">
+            <h1>📊 Dashboard Comparativo - Ingresos por Comuna</h1>
+            <p>Dashboard Analítico | Generado: 2026-01-31_18-41</p>
+        </div>
+        
+        <div class="kpi-grid">
+            <div class="kpi">
+                <div class="kpi-value">50</div>
+                <div class="kpi-label">Establecimientos</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value">16</div>
+                <div class="kpi-label">Comunas</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value">213</div>
+                <div class="kpi-label">Empleados</div>
+            </div>
+            <div class="kpi">
+                <div class="kpi-value">$510,000,000</div>
+                <div class="kpi-label">Ventas Mensuales</div>
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <h3>📈 Top 10 Comunas por Establecimientos</h3>
+                <div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 14</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:100.0%;border-radius:4px;"></div><span style="margin-left:10px;">8</span></div><div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 10</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:100.0%;border-radius:4px;"></div><span style="margin-left:10px;">8</span></div><div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 11</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:62.5%;border-radius:4px;"></div><span style="margin-left:10px;">5</span></div><div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 4</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:37.5%;border-radius:4px;"></div><span style="margin-left:10px;">3</span></div><div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 9</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:37.5%;border-radius:4px;"></div><span style="margin-left:10px;">3</span></div><div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 5</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:37.5%;border-radius:4px;"></div><span style="margin-left:10px;">3</span></div><div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 16</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:37.5%;border-radius:4px;"></div><span style="margin-left:10px;">3</span></div><div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 12</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:37.5%;border-radius:4px;"></div><span style="margin-left:10px;">3</span></div><div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 1</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:25.0%;border-radius:4px;"></div><span style="margin-left:10px;">2</span></div><div style="display:flex;align-items:center;margin:8px 0;"><span style="width:80px;">C. 8</span><div style="background:linear-gradient(90deg,#667eea,#764ba2);height:25px;width:25.0%;border-radius:4px;"></div><span style="margin-left:10px;">2</span></div>
+            </div>
+            
+            <div class="card">
+                <h3>🏪 Por Tipo de Establecimiento</h3>
+                <div style='display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;'><span>Comercio</span><strong>16</strong></div><div style='display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;'><span>Servicios</span><strong>14</strong></div><div style='display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;'><span>Alimentos</span><strong>13</strong></div><div style='display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;'><span>Salud</span><strong>7</strong></div>
+            </div>
+        </div>
+        
+        <div class="card" style="margin-top: 20px;">
+            <h3>📋 Tabla Detallada por Comuna</h3>
+            <table>
+                <thead>
+                    <tr><th>#</th><th>Comuna</th><th>Cantidad</th><th>Porcentaje</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>Comuna 14</td><td>8</td><td>16.0%</td></tr><tr><td>2</td><td>Comuna 10</td><td>8</td><td>16.0%</td></tr><tr><td>3</td><td>Comuna 11</td><td>5</td><td>10.0%</td></tr><tr><td>4</td><td>Comuna 4</td><td>3</td><td>6.0%</td></tr><tr><td>5</td><td>Comuna 9</td><td>3</td><td>6.0%</td></tr><tr><td>6</td><td>Comuna 5</td><td>3</td><td>6.0%</td></tr><tr><td>7</td><td>Comuna 16</td><td>3</td><td>6.0%</td></tr><tr><td>8</td><td>Comuna 12</td><td>3</td><td>6.0%</td></tr><tr><td>9</td><td>Comuna 1</td><td>2</td><td>4.0%</td></tr><tr><td>10</td><td>Comuna 8</td><td>2</td><td>4.0%</td></tr><tr><td>11</td><td>Comuna 6</td><td>2</td><td>4.0%</td></tr><tr><td>12</td><td>Comuna 7</td><td>2</td><td>4.0%</td></tr><tr><td>13</td><td>Comuna 13</td><td>2</td><td>4.0%</td></tr><tr><td>14</td><td>Comuna 3</td><td>2</td><td>4.0%</td></tr><tr><td>15</td><td>Comuna 2</td><td>1</td><td>2.0%</td></tr><tr><td>16</td><td>Comuna 15</td><td>1</td><td>2.0%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer">
+            <p>Agente Analítico Territorial - Medellín | Datos de ejemplo para demostración</p>
+        </div>
+    </div>
+</body>
+</html>

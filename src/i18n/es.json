@@ -119,7 +119,9 @@
     "close": "Cerrar",
     "prevProject": "Anterior",
     "nextProject": "Siguiente",
-    "anonymized": "Los datos mostrados son ficticios o están anonimizados."
+    "anonymized": "Los datos mostrados son ficticios o están anonimizados.",
+    "openReport": "Abrir reporte en una pestaña nueva",
+    "liveReport": "Reporte real"
   },
   "diagram": {
     "intro": "Sigue el recorrido de una petición por el sistema. Usa los botones, las flechas del teclado o haz clic en un componente.",
@@ -500,8 +502,8 @@
         "Arquitectura de skills que permite agregar dominios nuevos sin tocar el núcleo."
       ],
       "media": [
-        "Reporte HTML generado por el agente (datos de ejemplo)",
-        "Traza de una consulta en la herramienta de observabilidad"
+        "Dashboard comparativo generado por el agente: KPIs, top 10 de comunas y distribución por tipo (datos ficticios)",
+        "Ranking con distribución porcentual y acumulado por comuna (datos ficticios)"
       ],
       "diagram": {
         "nodes": {

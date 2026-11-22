@@ -91,8 +91,9 @@ export const PROJECTS = [
     techs: ['python', 'claude', 'pandas', 'geopandas', 'plotly', 'opentelemetry', 'prometheus', 'docker', 'html'],
     cover: '/media/agente-ia-territorial/cover.svg',
     media: [
-      { type: 'image', src: ph('agente-ia-territorial', 1) },
-      { type: 'image', src: ph('agente-ia-territorial', 2) },
+      // Reportes HTML reales generados por el agente (datos ficticios), se muestran en vivo
+      { type: 'html', src: '/media/agente-ia-territorial/reporte-dashboard.html' },
+      { type: 'html', src: '/media/agente-ia-territorial/reporte-distribucion.html' },
     ],
     links: { live: null, repo: 'https://github.com/jtagonzalez/Agente-territorial' },
     diagram: {

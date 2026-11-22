@@ -76,6 +76,10 @@ Cada proyecto tiene su carpeta: `public/media/<slug>/`.
    ```
    El video solo se descarga cuando alguien lo abre.
 
+**Reportes HTML reales:** si el proyecto genera reportes HTML autocontenidos (sin scripts externos), cópialos a
+`public/media/<slug>/` y usa `{ type: 'html', src: '/media/<slug>/reporte.html' }`. Se muestran como miniatura en
+vivo y se abren completos en un modal (iframe con sandbox, sin scripts). Así está hecho el Agente IA territorial.
+
 **Datos sensibles:** en lo de Corlide y en Cruces usa datos ficticios o difumina nombres, cédulas y direcciones antes
 de capturar. Nunca subas capturas con datos reales de ciudadanos.
 
