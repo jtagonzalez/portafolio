@@ -3,7 +3,7 @@ export const SITE = {
   name: 'José Fernando González Lozano',
   shortName: 'José González',
   // URL final del sitio (para canonical/hreflang). Cámbiala al desplegar.
-  url: 'https://jose-gonzalez.vercel.app',
+  url: 'https://jose-gonzalez-portafolio.vercel.app',
   cv: '/cv/Jose-Gonzalez-CV.pdf',
   github: 'https://github.com/jtagonzalez',
   linkedin: 'https://www.linkedin.com/in/jos%C3%A9-gonz%C3%A1lez-lozano-883523239',

@@ -2,6 +2,8 @@
 
 Portafolio bilingüe (ES/EN) de proyectos de backend, automatización e IA.
 
+**En vivo:** https://jose-gonzalez-portafolio.vercel.app
+
 **Stack:** React 19 + Vite · React Router (rutas `/es/...` y `/en/...`) · React-Bootstrap + Sass · simple-icons.
 
 ## Lo que incluye
