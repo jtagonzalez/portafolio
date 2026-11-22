@@ -191,7 +191,7 @@
         "period": "Ene 2026 – hoy",
         "type": "dev",
         "now": true,
-        "title": "Desarrollador de automatización y backend Python",
+        "title": "Ingeniero de software",
         "org": "Corlide",
         "text": "Agentes de IA con Claude, scraping en paralelo con Playwright, ETL desde AppSheet y SharePoint, dashboards en Power BI y Grafana, y despliegues en GCP."
       },
@@ -204,12 +204,12 @@
         "text": "Marketplace P2P en producción con escrow en Solidity, pagos USDT y fiat, y SEO en 3 idiomas."
       },
       {
-        "period": "Nov 2026 – en curso",
+        "period": "Nov 2026 – en curso · 8.º semestre",
         "type": "dev",
         "now": true,
         "title": "Ingeniería de Sistemas",
         "org": "CUN (Corporación Unificada Nacional de Educación Superior)",
-        "text": "Inicié la carrera el 23 de noviembre de 2026 para profundizar en arquitectura de software, sistemas distribuidos y bases de datos, mientras sigo trabajando como desarrollador."
+        "text": "Curso 8.º semestre de Ingeniería de Sistemas desde el 23 de noviembre de 2026, para profundizar en arquitectura de software, sistemas distribuidos y bases de datos mientras sigo trabajando como desarrollador."
       }
     ],
     "skillsTitle": "Stack técnico",

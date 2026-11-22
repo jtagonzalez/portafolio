@@ -191,7 +191,7 @@
         "period": "Jan 2026 – now",
         "type": "dev",
         "now": true,
-        "title": "Automation & Python backend developer",
+        "title": "Software engineer",
         "org": "Corlide",
         "text": "Claude AI agents, parallel Playwright scraping, ETL from AppSheet and SharePoint, Power BI and Grafana dashboards, and GCP deployments."
       },
@@ -204,12 +204,12 @@
         "text": "P2P marketplace in production with a Solidity escrow, USDT and fiat payments, and SEO in 3 languages."
       },
       {
-        "period": "Nov 2026 – in progress",
+        "period": "Nov 2026 – in progress · 8th semester",
         "type": "dev",
         "now": true,
         "title": "Systems Engineering (bachelor's degree)",
         "org": "CUN (Corporación Unificada Nacional de Educación Superior)",
-        "text": "Started on November 23, 2026 to go deeper into software architecture, distributed systems and databases while I keep working as a developer."
+        "text": "I'm in the 8th semester of Systems Engineering since November 23, 2026, going deeper into software architecture, distributed systems and databases while I keep working as a developer."
       }
     ],
     "skillsTitle": "Tech stack",
