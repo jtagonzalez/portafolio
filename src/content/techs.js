@@ -6,6 +6,7 @@ import {
   siAnthropic, siGrafana, siReact, siJavascript, siHtml5, siCss, siBootstrap, siOpencv,
   siTelegram, siWhatsapp, siPandas, siNumpy, siLinux, siBnbchain, siTether, siOpentelemetry,
   siPrometheus, siSqlite, siPlotly, siSelenium, siGeopandas, siGooglechrome, siVite,
+  siScikitlearn, siScipy,
 } from 'simple-icons'
 
 const fromSi = (icon, extra = {}) => ({ title: icon.title, path: icon.path, color: `#${icon.hex}`, ...extra })
@@ -30,6 +31,9 @@ export const TECHS = {
   geopandas: fromSi(siGeopandas, { cat: 'data' }),
   numpy: fromSi(siNumpy, { cat: 'data' }),
   plotly: fromSi(siPlotly, { cat: 'data' }),
+  sklearn: fromSi(siScikitlearn, { cat: 'ai' }),
+  scipy: fromSi(siScipy, { cat: 'data' }),
+  matplotlib: { title: 'Matplotlib', mono: 'MPL', color: '#11557C', cat: 'data' },
   playwright: { title: 'Playwright', mono: 'PW', color: '#2EAD33', cat: 'automation' },
   chromium: fromSi(siGooglechrome, { title: 'Chromium headless', cat: 'automation' }),
   selenium: fromSi(siSelenium, { cat: 'automation' }),

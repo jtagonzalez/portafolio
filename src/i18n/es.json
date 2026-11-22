@@ -40,8 +40,8 @@
         "lbl": "fuentes consultadas en paralelo"
       },
       {
-        "num": "3",
-        "lbl": "idiomas de SEO (ES/EN/FR)"
+        "num": "25k",
+        "lbl": "predicciones de ML registradas"
       }
     ]
   },
@@ -582,112 +582,141 @@
       }
     },
     "bot-trading": {
-      "name": "Bot de trading algorítmico",
-      "summary": "Bot en Python que recibe velas en tiempo real por WebSocket, calcula indicadores técnicos, gestiona el riesgo y guarda la telemetría para un dashboard visual.",
+      "name": "Sistema de trading algorítmico con ML",
+      "summary": "4 bots en paralelo con modelos de machine learning validados por walk-forward y pruebas estadísticas, 25 mil predicciones registradas en SQLite y un panel web propio para controlarlos y auditar cada operación.",
       "tags": [
+        "Machine learning",
+        "Validación estadística",
         "Tiempo real",
-        "Análisis técnico",
         "Proyecto personal"
       ],
-      "role": "Autor",
-      "period": "2026",
+      "role": "Autor (ML, backend, análisis y panel web)",
+      "period": "Ene 2026 – hoy",
       "description": [
-        "Un bot que opera opciones binarias sobre la API de un broker usando una cuenta demo. Lo hice para practicar el procesamiento de datos en tiempo real y el diseño de sistemas con estado.",
-        "Recibe velas por WebSocket, las convierte en DataFrames, calcula indicadores técnicos con pandas y NumPy y genera señales. Un módulo de gestión de riesgo decide el monto y los límites de cada operación.",
-        "Cada operación y su resultado se guardan en SQLite (modo WAL) y en un archivo de telemetría. Un dashboard en React/HTML muestra la curva de resultados, la tasa de acierto y el estado en vivo."
+        "Empezó como un bot sencillo y terminó siendo un laboratorio completo de trading algorítmico sobre la API de un broker (forex y cripto). Corren 4 bots en paralelo, cada uno con su supervisor y un watchdog que relanza la conexión si la API se cuelga.",
+        "El núcleo es un modelo de gradient boosting (scikit-learn) entrenado con 16 indicadores técnicos y validado con walk-forward: se entrena con el pasado y se evalúa solo con datos que nunca vio. Un edge solo se acepta si su tasa de acierto supera el punto de equilibrio, 1 / (1 + payout), con un test de permutación significativo.",
+        "Todo queda en SQLite: cada arranque, cada predicción (operada o descartada) y cada operación con su latencia y payout real. Un panel web propio (servidor HTTP en Python, unas 5.200 líneas) arranca y detiene bots, muestra resultados por modelo y genera la gráfica de cada operación con lo que el bot vio al decidir. Los resultados se miden contra el punto de equilibrio y no contra el P&L a secas: en vivo, la muestra todavía es pequeña y los resultados son mixtos, y eso también se reporta."
       ],
       "challenges": [
         {
-          "problem": "La conexión WebSocket se caía en silencio y el bot quedaba 'vivo' sin datos.",
-          "solution": "Fijé la versión compatible del cliente, agregué un heartbeat y reconexión automática, y un script de prueba de conexión."
+          "problem": "Un backtest mostraba 11 puntos de acierto que en realidad no existían.",
+          "solution": "Encontré el sesgo: el backtester contaba los empates a favor. Desde entonces toda estrategia se contrasta primero con la tasa base del mercado crudo."
         },
         {
-          "problem": "El dashboard leía la base mientras el bot escribía y se generaban bloqueos.",
-          "solution": "SQLite en modo WAL para tener lecturas concurrentes sin bloquear las escrituras."
+          "problem": "Muchas estrategias 'ganadoras' en el histórico eran pura suerte.",
+          "solution": "Reglas anti-autoengaño: acierto contra punto de equilibrio, test de permutación y partición temporal. Con eso descarté, sobre 7.022 operaciones simuladas, una estrategia Weis Wave + Bollinger que parecía buena (47,6 % de acierto)."
+        },
+        {
+          "problem": "La API a veces se colgaba sin timeout y el bot quedaba 'vivo' pero sin datos.",
+          "solution": "Un watchdog que mata la llamada colgada y supervisores que relanzan cada bot por separado."
+        },
+        {
+          "problem": "Un bug cortaba los ciclos de progresión un paso antes de tiempo.",
+          "solution": "Reconstruí el ciclo real vela a vela (análisis forense), medí cuánto costaba el bug y lo corregí."
         }
       ],
       "achievements": [
-        "Telemetría completa de cada operación (señal, monto, resultado y latencia).",
-        "Dashboard visual en tiempo real.",
-        "Gestión de riesgo configurable con límites de pérdida."
+        "2 edges validados con walk-forward: EUR/USD 15 min (55,6 % de acierto, p = 0,0006) y BTC/ETH 15 min (56–58 %), por encima del punto de equilibrio de 52,6 %.",
+        "25.240 predicciones y 749 operaciones registradas con trazabilidad completa (enero a noviembre de 2026).",
+        "10 modelos y estrategias evaluados; los que no pasaron la prueba estadística se descartaron antes de escalarlos.",
+        "Panel web para operar varios bots y cuentas, compartible por túnel SSH.",
+        "Empaquetado con Docker, instalador para Windows y sistema de licencias."
       ],
       "media": [
-        "Dashboard de telemetría del bot"
+        "Operación en vivo del modelo ML (BTC/USD, 15 min) con los 16 indicadores que vio al decidir",
+        "Análisis forense: reconstrucción vela a vela de un ciclo real para medir el impacto de un bug",
+        "Backtest con n = 7.022: la estrategia quedó por debajo del punto de equilibrio y se descartó"
       ],
       "diagram": {
         "nodes": {
+          "lab": [
+            "Laboratorio",
+            "backtest · walk-forward"
+          ],
           "broker": [
             "API del broker",
-            "WebSocket · demo"
+            "WebSocket"
           ],
-          "collector": [
-            "Colector",
-            "velas → DataFrame"
+          "bots": [
+            "4 bots",
+            "supervisor + watchdog"
           ],
-          "ta": [
-            "Análisis técnico",
-            "pandas · NumPy"
+          "model": [
+            "Modelo ML",
+            "gradient boosting"
           ],
           "risk": [
-            "Gestión de riesgo",
-            "monto y límites"
+            "Filtro de riesgo",
+            "vs. punto de equilibrio"
           ],
           "db": [
-            "SQLite (WAL)",
-            "telemetría"
+            "live.db",
+            "SQLite"
           ],
-          "dash": [
-            "Dashboard",
-            "React · HTML"
+          "panel": [
+            "Panel web",
+            "control y auditoría"
           ]
         },
         "steps": [
           {
+            "title": "Validar antes de operar",
+            "text": "Cada modelo se entrena y se evalúa con walk-forward. Solo pasa a producción si supera el punto de equilibrio con un test de permutación significativo.",
+            "code": "py ml_walkforward.py --tf 15m --modelo gb --bloques 12"
+          },
+          {
             "title": "Velas en tiempo real",
-            "text": "El broker envía las velas por WebSocket."
+            "text": "El broker entrega las velas cerradas. Si la llamada se cuelga, el watchdog la mata y el supervisor relanza el bot."
           },
           {
-            "title": "A DataFrame",
-            "text": "El colector mantiene una ventana deslizante de velas en pandas."
+            "title": "Calcular indicadores",
+            "text": "El bot calcula 16 indicadores (RSI, estocástico, CCI, ADX, MACD, Bollinger, ATR…) y le pide una probabilidad al modelo."
           },
           {
-            "title": "Señal",
-            "text": "Se calculan los indicadores técnicos y se genera una señal de compra, de venta o de no operar."
+            "title": "¿Vale la pena?",
+            "text": "La probabilidad se compara con el umbral de confianza y con el punto de equilibrio del payout de ese momento.",
+            "code": "breakeven = 1 / (1 + payout)   # payout 90 % → 52,6 %"
           },
           {
             "title": "Orden",
-            "text": "El módulo de riesgo define el monto, revisa los límites diarios y envía la orden a la cuenta demo."
+            "text": "Si pasa el filtro, se envía la orden (por defecto en la cuenta de práctica)."
           },
           {
-            "title": "Registrar",
-            "text": "La operación y su resultado se guardan en SQLite."
+            "title": "Registrar todo",
+            "text": "Se guarda la predicción (operada o descartada) y la operación con su latencia, payout real y resultado.",
+            "code": "runs · predicciones · operaciones"
           },
           {
-            "title": "Visualizar",
-            "text": "El dashboard lee las estadísticas y muestra la curva y la tasa de acierto."
+            "title": "Auditar",
+            "text": "El panel agrupa los resultados por modelo y genera la gráfica de cada operación con lo que el bot vio."
+          },
+          {
+            "title": "Controlar",
+            "text": "Desde el panel se arrancan y detienen bots y cuentas, sin tocar la consola."
           }
         ]
       }
     },
     "bot-ruleta": {
       "name": "Automatización con OCR en vivo",
-      "summary": "Automatización de escritorio que lee resultados en vivo con OCR, aplica una estrategia configurable y se controla desde una ventana Tkinter y un panel web de estadísticas.",
+      "summary": "Automatización de escritorio que lee resultados en vivo con OCR y doble verificación, ejecuta una estrategia configurable y deja todo registrado: 329 sesiones y 740 giros analizados.",
       "tags": [
         "Visión por computador",
         "OCR",
+        "Análisis de datos",
         "Proyecto personal"
       ],
       "role": "Autor",
-      "period": "2026",
+      "period": "Oct 2026",
       "description": [
-        "Una automatización para una mesa de ruleta en vivo. Lee la tira de resultados de la pantalla con OCR, aplica una estrategia de patrón configurable y ejecuta clics sobre la interfaz.",
-        "Lo más interesante es la ingeniería alrededor: perfiles de pantalla en JSON por resolución con un calibrador guiado, modos 'seco' (solo observa) y 'visual' (mueve el mouse sin ejecutar), un orquestador que lo lanza por horarios y un panel web con estadísticas de los registros.",
-        "Se controla desde una ventana Tkinter para el uso diario. No arranca si la resolución no coincide con un perfil calibrado."
+        "Una automatización para una mesa de ruleta en vivo: lee de la pantalla la tira de resultados con OCR, aplica una estrategia de patrón configurable y hace los clics sobre la interfaz.",
+        "Lo interesante es la ingeniería alrededor. Cada número se aísla por celda, se binariza y se confirma dos veces (color de los píxeles y OCR) antes de usarlo. Hay perfiles de pantalla por resolución con un calibrador guiado, modos 'seco' (solo observa) y 'visual' (mueve el mouse sin apostar), un orquestador por horarios y un panel web de estadísticas.",
+        "El análisis de los registros confirmó lo que dice la teoría: la martingala gana casi todos los ciclos (335 de 337), pero las 2 rachas largas se comen toda la ganancia. Me quedo con el proyecto como ejercicio de visión por computador y de medir con datos antes de creer en una estrategia."
       ],
       "challenges": [
         {
-          "problem": "El OCR leía mal algunos números por el brillo y las animaciones de la mesa.",
-          "solution": "Preprocesamiento con OpenCV (recorte por región, umbral y escalado) y validación del número leído antes de usarlo."
+          "problem": "Los números rojos sobre fondo oscuro y el 0 sobre verde confundían al OCR.",
+          "solution": "Segmentación por celda, binarización (blanco sobre negro) y dilatación, más una doble verificación con el color de los píxeles. Si no coinciden, se toma otra captura."
         },
         {
           "problem": "Las coordenadas cambiaban con cada monitor y resolución.",
@@ -695,16 +724,18 @@
         },
         {
           "problem": "Probar sin arriesgar nada.",
-          "solution": "Modos 'seco' y 'visual', y un comando para verificar clics antes de operar."
+          "solution": "Modos 'seco' y 'visual', y un comando que verifica los clics antes de operar."
         }
       ],
       "achievements": [
+        "329 sesiones automatizadas y 740 giros registrados en CSV.",
+        "509 lecturas confirmadas por doble verificación (píxeles + OCR), sin conflictos sin resolver.",
         "Perfiles multirresolución con calibración guiada.",
-        "Orquestador por horarios, con control de procesos duplicados.",
-        "Panel web de estadísticas a partir de los registros."
+        "Análisis con datos reales: 335 de 337 ciclos ganados y aun así balance negativo, la evidencia de que la martingala no crea ventaja."
       ],
       "media": [
-        "Ventana de control Tkinter"
+        "Pipeline de OCR: la tira original (arriba), segmentada por celdas y binarizada (abajo)",
+        "Celdas difíciles: el número se confirma en 3 capturas antes de aceptarlo"
       ],
       "diagram": {
         "nodes": {
@@ -775,7 +806,7 @@
     },
     "bot-mineria": {
       "name": "Bot de automatización por visión",
-      "summary": "Agente de escritorio de ~9.900 líneas que juega un ciclo completo de recolección y venta leyendo solo la pantalla: template matching, OCR y una máquina de estados con watchdog.",
+      "summary": "Agente de escritorio de unas 10.000 líneas que hace un ciclo completo de recolección y venta leyendo solo la pantalla (46 plantillas, OCR y una máquina de estados con watchdog) y reporta su estado a Supabase.",
       "tags": [
         "Visión por computador",
         "Máquina de estados",
@@ -785,8 +816,8 @@
       "period": "2026",
       "description": [
         "Un bot para un videojuego que no usa APIs ni lee memoria: todo lo decide mirando la pantalla, como lo haría una persona.",
-        "Detecta elementos con template matching de OpenCV y comparando píxeles, lee precios con Tesseract y recorre un ciclo completo: recolectar, ir al banco, vender en el mercado respetando un precio mínimo y volver.",
-        "Para que funcione horas sin supervisión tiene un hilo watchdog que reinicia el juego si no hay progreso en 5 minutos, detección de desconexiones y pantallas de carga, y un log con marcas de tiempo. Documenté su arquitectura en un mapa de funciones."
+        "Detecta elementos con template matching de OpenCV (46 plantillas) y comparando píxeles, lee precios con Tesseract y recorre un ciclo completo: recolectar, ir al banco, vender en el mercado respetando un precio mínimo y volver.",
+        "Para funcionar horas sin supervisión tiene un hilo watchdog que reinicia el juego si no hay progreso en 5 minutos y detecta desconexiones y pantallas de carga. Además, cada PC reporta un heartbeat y sus eventos a Supabase, para supervisar varias máquinas a la vez sin que eso pueda trabar el bucle principal."
       ],
       "challenges": [
         {
@@ -794,7 +825,7 @@
           "solution": "Una función de seguridad que se llama en todos los bucles, más un watchdog en otro hilo que fuerza el reinicio si no hay progreso."
         },
         {
-          "problem": "Un archivo de 9.900 líneas difícil de mantener.",
+          "problem": "Un archivo de 10.000 líneas difícil de mantener.",
           "solution": "Documento de arquitectura con el flujo general y un índice de funciones por responsabilidad, como paso previo a modularizar."
         },
         {
@@ -803,12 +834,13 @@
         }
       ],
       "achievements": [
-        "Funciona durante horas sin supervisión, con autorrecuperación.",
+        "Funciona durante horas sin supervisión y se recupera solo.",
         "Ciclo completo de recolección, banco y mercado automatizado.",
-        "Arquitectura documentada para mantenerlo."
+        "Monitoreo de flota: cada PC reporta su estado a Supabase (best-effort, nunca bloquea al bot).",
+        "46 plantillas de visión y 3 suites de pruebas (banco, mercado y funciones), con la arquitectura documentada."
       ],
       "media": [
-        "Log del bot y detección de elementos"
+        "Las 46 plantillas que la visión busca en pantalla con cv2.matchTemplate"
       ],
       "diagram": {
         "nodes": {
@@ -839,6 +871,10 @@
           "log": [
             "Log",
             "bot_log.txt"
+          ],
+          "fleet": [
+            "Monitor de flota",
+            "Supabase · heartbeat"
           ]
         },
         "steps": [
@@ -869,6 +905,10 @@
           {
             "title": "Registrar",
             "text": "Todo queda en un log con marcas de tiempo, para depurar."
+          },
+          {
+            "title": "Reportar estado",
+            "text": "Un hilo aparte envía un heartbeat y los eventos (desconexión, reinicio) a Supabase. Si no hay internet, el bot sigue sin enterarse."
           }
         ]
       }

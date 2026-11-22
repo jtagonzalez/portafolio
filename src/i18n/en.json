@@ -40,8 +40,8 @@
         "lbl": "sources queried in parallel"
       },
       {
-        "num": "3",
-        "lbl": "SEO languages (ES/EN/FR)"
+        "num": "25k",
+        "lbl": "ML predictions logged"
       }
     ]
   },
@@ -582,112 +582,141 @@
       }
     },
     "bot-trading": {
-      "name": "Algorithmic trading bot",
-      "summary": "A Python bot that streams real-time candles over WebSocket, computes technical indicators, manages risk and logs telemetry for a visual dashboard.",
+      "name": "ML algorithmic trading system",
+      "summary": "4 bots running in parallel with machine learning models validated by walk-forward testing and statistical tests, 25,000 predictions logged to SQLite, and a custom web panel to control them and audit every trade.",
       "tags": [
+        "Machine learning",
+        "Statistical validation",
         "Real time",
-        "Technical analysis",
         "Personal project"
       ],
-      "role": "Author",
-      "period": "2026",
+      "role": "Author (ML, backend, analysis and web panel)",
+      "period": "Jan 2026 – now",
       "description": [
-        "A bot that trades binary options through a broker's API on a demo account. I built it to practice real-time data processing and designing systems with state.",
-        "It receives candles over WebSocket, turns them into DataFrames, computes technical indicators with pandas and NumPy and generates signals. A risk module sets the amount and limits for each trade.",
-        "Every trade and its result go into SQLite (WAL mode) and a telemetry file. A React/HTML dashboard shows the equity curve, win rate and live status."
+        "It started as a simple bot and grew into a full algorithmic trading lab on top of a broker's API (forex and crypto). Four bots run in parallel, each with its own supervisor and a watchdog that restarts the connection if the API hangs.",
+        "At its core is a gradient boosting model (scikit-learn) trained on 16 technical indicators and validated with walk-forward testing: it's trained on the past and evaluated only on data it has never seen. An edge is accepted only if its win rate beats the breakeven point, 1 / (1 + payout), with a significant permutation test.",
+        "Everything goes into SQLite: every run, every prediction (traded or skipped) and every trade with its latency and actual payout. A custom web panel (a Python HTTP server, about 5,200 lines) starts and stops bots, shows results per model and draws a chart of each trade with what the bot saw when it decided. Results are measured against breakeven, not raw P&L: live, the sample is still small and results are mixed, and that gets reported too."
       ],
       "challenges": [
         {
-          "problem": "The WebSocket connection dropped silently, leaving the bot 'alive' with no data.",
-          "solution": "I pinned the compatible client version and added a heartbeat, automatic reconnection and a connection test script."
+          "problem": "A backtest showed an 11-point win-rate boost that didn't actually exist.",
+          "solution": "I found the bias: the backtester counted ties as wins. Since then, every strategy is checked first against the raw market's base rate."
         },
         {
-          "problem": "The dashboard read the database while the bot was writing, which caused locks.",
-          "solution": "SQLite in WAL mode, so reads can run at the same time as writes without blocking them."
+          "problem": "Many 'winning' strategies on historical data were pure luck.",
+          "solution": "Anti-self-deception rules: win rate against breakeven, permutation tests and time-based splits. That's how I discarded, over 7,022 simulated trades, a Weis Wave + Bollinger strategy that looked good (47.6% win rate)."
+        },
+        {
+          "problem": "The API sometimes hung with no timeout, leaving the bot 'alive' but without data.",
+          "solution": "A watchdog that kills the hung call, and supervisors that restart each bot independently."
+        },
+        {
+          "problem": "A bug cut progression cycles one step short.",
+          "solution": "I rebuilt the real cycle candle by candle (forensic analysis), measured what the bug cost and fixed it."
         }
       ],
       "achievements": [
-        "Full telemetry for every trade (signal, amount, result and latency).",
-        "Real-time visual dashboard.",
-        "Configurable risk management with loss limits."
+        "2 edges validated with walk-forward testing: EUR/USD 15 min (55.6% win rate, p = 0.0006) and BTC/ETH 15 min (56–58%), above the 52.6% breakeven.",
+        "25,240 predictions and 749 trades logged with full traceability (January to November 2026).",
+        "10 models and strategies evaluated; those that failed the statistical test were dropped before scaling up.",
+        "A web panel to run multiple bots and accounts, shareable over an SSH tunnel.",
+        "Packaged with Docker, a Windows installer and a licensing system."
       ],
       "media": [
-        "Bot telemetry dashboard"
+        "Live trade from the ML model (BTC/USD, 15 min) with the 16 indicators it saw when deciding",
+        "Forensic analysis: candle-by-candle rebuild of a real cycle to measure a bug's impact",
+        "Backtest with n = 7,022: the strategy fell below breakeven and was discarded"
       ],
       "diagram": {
         "nodes": {
+          "lab": [
+            "Research lab",
+            "backtest · walk-forward"
+          ],
           "broker": [
             "Broker API",
-            "WebSocket · demo"
+            "WebSocket"
           ],
-          "collector": [
-            "Collector",
-            "candles → DataFrame"
+          "bots": [
+            "4 bots",
+            "supervisor + watchdog"
           ],
-          "ta": [
-            "Technical analysis",
-            "pandas · NumPy"
+          "model": [
+            "ML model",
+            "gradient boosting"
           ],
           "risk": [
-            "Risk management",
-            "size & limits"
+            "Risk filter",
+            "vs. breakeven"
           ],
           "db": [
-            "SQLite (WAL)",
-            "telemetry"
+            "live.db",
+            "SQLite"
           ],
-          "dash": [
-            "Dashboard",
-            "React · HTML"
+          "panel": [
+            "Web panel",
+            "control & audit"
           ]
         },
         "steps": [
           {
+            "title": "Validate before trading",
+            "text": "Each model is trained and evaluated with walk-forward testing. It only goes to production if it beats breakeven with a significant permutation test.",
+            "code": "py ml_walkforward.py --tf 15m --modelo gb --bloques 12"
+          },
+          {
             "title": "Real-time candles",
-            "text": "The broker streams candles over WebSocket."
+            "text": "The broker delivers closed candles. If the call hangs, the watchdog kills it and the supervisor restarts the bot."
           },
           {
-            "title": "Into a DataFrame",
-            "text": "The collector keeps a sliding window of candles in pandas."
+            "title": "Compute indicators",
+            "text": "The bot computes 16 indicators (RSI, stochastic, CCI, ADX, MACD, Bollinger, ATR…) and asks the model for a probability."
           },
           {
-            "title": "Signal",
-            "text": "Indicators are computed and a buy, sell or no-trade signal comes out."
+            "title": "Is it worth it?",
+            "text": "The probability is compared with the confidence threshold and with the breakeven for the current payout.",
+            "code": "breakeven = 1 / (1 + payout)   # payout 90% → 52.6%"
           },
           {
             "title": "Order",
-            "text": "The risk module sets the amount, checks the daily limits and sends the order to the demo account."
+            "text": "If it passes the filter, the order is sent (to the practice account by default)."
           },
           {
-            "title": "Log it",
-            "text": "The trade and its result are saved to SQLite."
+            "title": "Log everything",
+            "text": "The prediction (traded or skipped) is saved, along with the trade's latency, actual payout and result.",
+            "code": "runs · predicciones · operaciones"
           },
           {
-            "title": "Visualize",
-            "text": "The dashboard reads the stats and shows the equity curve and win rate."
+            "title": "Audit",
+            "text": "The panel groups results by model and draws a chart of each trade with what the bot saw."
+          },
+          {
+            "title": "Control",
+            "text": "Bots and accounts are started and stopped from the panel, without touching the console."
           }
         ]
       }
     },
     "bot-ruleta": {
       "name": "Live OCR automation",
-      "summary": "A desktop automation that reads live results with OCR, applies a configurable strategy, and is controlled from a Tkinter window and a web stats panel.",
+      "summary": "A desktop automation that reads live results with double-checked OCR, runs a configurable strategy and logs everything: 329 sessions and 740 spins analyzed.",
       "tags": [
         "Computer vision",
         "OCR",
+        "Data analysis",
         "Personal project"
       ],
       "role": "Author",
-      "period": "2026",
+      "period": "Oct 2026",
       "description": [
-        "An automation for a live roulette table. It reads the strip of results on screen with OCR, applies a configurable pattern strategy and clicks on the interface.",
-        "The interesting part is the engineering around it: JSON screen profiles per resolution with a guided calibrator, 'dry' (watch only) and 'visual' (moves the mouse without acting) modes, a scheduler that launches it on a timetable, and a web panel with stats from the logs.",
-        "Day to day it's controlled from a Tkinter window, and it refuses to start if the screen resolution doesn't match a calibrated profile."
+        "An automation for a live roulette table: it reads the strip of results on screen with OCR, applies a configurable pattern strategy and clicks on the interface.",
+        "The interesting part is the engineering around it. Each number is isolated by cell, binarized and confirmed twice (pixel color and OCR) before it's used. There are per-resolution screen profiles with a guided calibrator, 'dry' (watch only) and 'visual' (moves the mouse without betting) modes, a timetable-based scheduler and a web stats panel.",
+        "The log analysis confirmed what theory says: the martingale wins almost every cycle (335 of 337), but the 2 long losing streaks wipe out all the gains. I keep this project as a computer-vision exercise, and as a lesson in measuring with data before trusting a strategy."
       ],
       "challenges": [
         {
-          "problem": "OCR misread some numbers because of the table's brightness and animations.",
-          "solution": "OpenCV preprocessing (region crop, thresholding and upscaling) and validation of each number before using it."
+          "problem": "Red numbers on a dark background and the 0 on green confused the OCR.",
+          "solution": "Per-cell segmentation, binarization (white on black) and dilation, plus a second check against pixel color. If they disagree, another capture is taken."
         },
         {
           "problem": "Coordinates changed with every monitor and resolution.",
@@ -695,16 +724,18 @@
         },
         {
           "problem": "Testing without risking anything.",
-          "solution": "'Dry' and 'visual' modes, plus a command to verify clicks before running for real."
+          "solution": "'Dry' and 'visual' modes, plus a command that verifies the clicks before running for real."
         }
       ],
       "achievements": [
+        "329 automated sessions and 740 spins logged to CSV.",
+        "509 readings confirmed by a double check (pixels + OCR), with no unresolved conflicts.",
         "Multi-resolution profiles with guided calibration.",
-        "Timetable-based scheduler that prevents duplicate processes.",
-        "Web stats panel built from the logs."
+        "Analysis on real data: 335 of 337 cycles won and still a net loss, evidence that the martingale creates no edge."
       ],
       "media": [
-        "Tkinter control window"
+        "OCR pipeline: the original strip (top), segmented by cell and binarized (bottom)",
+        "Hard cells: the number is confirmed across 3 captures before it's accepted"
       ],
       "diagram": {
         "nodes": {
@@ -775,7 +806,7 @@
     },
     "bot-mineria": {
       "name": "Vision-based automation bot",
-      "summary": "A ~9,900-line desktop agent that runs a full gather-and-sell loop by only looking at the screen: template matching, OCR and a state machine with a watchdog.",
+      "summary": "A ~10,000-line desktop agent that runs a full gather-and-sell loop by only looking at the screen (46 templates, OCR and a state machine with a watchdog) and reports its status to Supabase.",
       "tags": [
         "Computer vision",
         "State machine",
@@ -785,8 +816,8 @@
       "period": "2026",
       "description": [
         "A bot for a video game that uses no APIs and doesn't read memory: it makes every decision by looking at the screen, like a person would.",
-        "It finds elements with OpenCV template matching and pixel checks, reads prices with Tesseract, and runs a full loop: gather, go to the bank, sell at the market above a minimum price, and come back.",
-        "To run for hours unattended, it has a watchdog thread that restarts the game after 5 minutes without progress, detection of disconnects and loading screens, and a timestamped log. I documented its architecture in a function map."
+        "It finds elements with OpenCV template matching (46 templates) and pixel checks, reads prices with Tesseract, and runs a full loop: gather, go to the bank, sell at the market above a minimum price, and come back.",
+        "To run for hours unattended, it has a watchdog thread that restarts the game after 5 minutes without progress and detects disconnects and loading screens. Each PC also reports a heartbeat and its events to Supabase, so several machines can be monitored at once without ever blocking the main loop."
       ],
       "challenges": [
         {
@@ -794,7 +825,7 @@
           "solution": "A safety function called inside every loop, plus a watchdog on a separate thread that forces a restart when there's no progress."
         },
         {
-          "problem": "A 9,900-line file that was hard to maintain.",
+          "problem": "A 10,000-line file that was hard to maintain.",
           "solution": "An architecture document with the overall flow and an index of functions by responsibility, as a first step toward splitting it into modules."
         },
         {
@@ -805,10 +836,11 @@
       "achievements": [
         "Runs for hours unattended and recovers on its own.",
         "The full gather → bank → market loop is automated.",
-        "Documented architecture to keep it maintainable."
+        "Fleet monitoring: each PC reports its status to Supabase (best-effort, never blocks the bot).",
+        "46 vision templates and 3 test suites (bank, market and functions), with documented architecture."
       ],
       "media": [
-        "Bot log and element detection"
+        "The 46 templates the vision system looks for on screen with cv2.matchTemplate"
       ],
       "diagram": {
         "nodes": {
@@ -839,6 +871,10 @@
           "log": [
             "Log",
             "bot_log.txt"
+          ],
+          "fleet": [
+            "Fleet monitor",
+            "Supabase · heartbeat"
           ]
         },
         "steps": [
@@ -869,6 +905,10 @@
           {
             "title": "Log",
             "text": "Everything goes into a timestamped log for debugging."
+          },
+          {
+            "title": "Report status",
+            "text": "A separate thread sends a heartbeat and events (disconnects, restarts) to Supabase. If there's no internet, the bot carries on unaware."
           }
         ]
       }

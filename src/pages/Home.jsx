@@ -69,7 +69,7 @@ export default function Home() {
               {t('projects.seeAll')} <Arrow />
             </Link>
           </div>
-          <Row xs={1} md={2} lg={3} className="g-4">
+          <Row xs={1} md={2} className="g-4">
             {featured.map((p, i) => (
               <Col key={p.slug}>
                 <ProjectCard project={p} index={i} />
