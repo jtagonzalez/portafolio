@@ -6,7 +6,7 @@ import {
   siAnthropic, siGrafana, siReact, siJavascript, siHtml5, siCss, siBootstrap, siOpencv,
   siTelegram, siWhatsapp, siPandas, siNumpy, siLinux, siBnbchain, siTether, siOpentelemetry,
   siPrometheus, siSqlite, siPlotly, siSelenium, siGeopandas, siGooglechrome, siVite,
-  siScikitlearn, siScipy,
+  siScikitlearn, siScipy, siDeepseek, siRedis, siCloudflare, siGooglegemini,
 } from 'simple-icons'
 
 const fromSi = (icon, extra = {}) => ({ title: icon.title, path: icon.path, color: `#${icon.hex}`, ...extra })
@@ -24,6 +24,10 @@ export const TECHS = {
   bsc: fromSi(siBnbchain, { title: 'BNB Smart Chain', cat: 'web3' }),
   usdt: fromSi(siTether, { title: 'USDT', cat: 'web3' }),
   claude: fromSi(siAnthropic, { title: 'Claude (Anthropic)', cat: 'ai' }),
+  deepseek: fromSi(siDeepseek, { title: 'DeepSeek', cat: 'ai' }),
+  gemini: fromSi(siGooglegemini, { title: 'Gemini Vision', cat: 'ai' }),
+  redis: fromSi(siRedis, { cat: 'data' }),
+  cloudflare: fromSi(siCloudflare, { cat: 'cloud' }),
   opentelemetry: fromSi(siOpentelemetry, { cat: 'data' }),
   prometheus: fromSi(siPrometheus, { cat: 'data' }),
   grafana: fromSi(siGrafana, { cat: 'data' }),

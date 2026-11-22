@@ -224,10 +224,11 @@
   "projectsContent": {
     "kamasmarket": {
       "name": "KamasMarket",
-      "summary": "A P2P marketplace in production for buying and selling a video game's virtual currency, with a Solidity escrow, on-chain USDT payments and fiat gateways.",
+      "summary": "A P2P marketplace in production for buying and selling a video game's virtual currency, with a Solidity escrow, on-chain USDT and fiat payments, and an AI support chat (DeepSeek) that looks up the user's real data.",
       "tags": [
         "Payments",
         "Web3",
+        "AI agents",
         "SEO ES/EN/FR"
       ],
       "role": "Founder and sole developer (full stack)",
@@ -235,7 +236,8 @@
       "description": [
         "KamasMarket is a person-to-person marketplace for buying and selling kamas (the currency of Dofus Retro). Buyers and sellers don't know each other, so the money stays in escrow until delivery is confirmed.",
         "The backend runs on FastAPI/Starlette with several uvicorn workers. PostgreSQL on Supabase holds the catalog, orders, internal wallets and the admin panel. Payments come in as on-chain-verified USDT, through a Solidity escrow contract on BNB Smart Chain, or through fiat/crypto gateways (Wompi and NOWPayments).",
-        "An automated delivery worker takes paid orders from an authenticated HTTP queue, completes the delivery and reports evidence. The backend then releases the funds to the seller. The site also has technical SEO in three languages (hreflang, dynamic sitemap) and runs on a Linux VPS with Docker."
+        "An automated delivery worker takes paid orders from an authenticated HTTP queue, completes the delivery and reports evidence. The backend then releases the funds to the seller. The site also has technical SEO in three languages (hreflang, dynamic sitemap) and runs on a Linux VPS with Docker.",
+        "I also built AI-powered support: two DeepSeek agents with function calling, one for customers and one for the admin team, kept apart by design (different prompts and tools, never mixed). The customer agent walks people through buying and selling, explains how to set up a payout method, and looks up the orders, sanctions, payouts and refunds of whoever is chatting; when it can't solve something, it opens a ticket for a human. The admin agent answers business questions (sales, commissions, conversion funnel, payment health, escrow, stuck orders) with 26 read-only tools."
       ],
       "challenges": [
         {
@@ -253,6 +255,18 @@
         {
           "problem": "Getting organic traffic in three markets from one site.",
           "solution": "Language-prefixed routes, hreflang tags, a dynamic sitemap.xml and indexing in Google Search Console."
+        },
+        {
+          "problem": "An AI chat that reads real data can be manipulated into showing another user's information.",
+          "solution": "The restriction lives in code, not in the prompt: every customer-agent tool receives the authenticated session's user, never one the model chooses. The customer agent also has no access to any admin tool."
+        },
+        {
+          "problem": "One day the main model left requests queued for hours without answering.",
+          "solution": "A fallback model with a circuit-breaker pattern: if the main model doesn't answer within 20 s, traffic goes to the fallback for 5 minutes, then the main model is tried again."
+        },
+        {
+          "problem": "A load test showed the backend degrading at 15–30 concurrent connections.",
+          "solution": "I raised the container limits, moved to 3 uvicorn workers with a shared Redis rate limit, and put the domain behind Cloudflare."
         }
       ],
       "achievements": [
@@ -260,7 +274,10 @@
         "Zero duplicate charges thanks to idempotency and transactional locks.",
         "15+ versioned SQL migrations (wallets, counter-offers, sanctions, multi-bot, security).",
         "Telegram and WhatsApp notifications, plus Google sign-in.",
-        "Reproducible Docker deployment on a VPS with hardened SSH."
+        "Reproducible Docker deployment on a VPS with hardened SSH.",
+        "AI support in 3 languages: 34 tools (8 for customers, 26 for admins), human escalation through tickets, and every conversation logged as resolved, unresolved or escalated.",
+        "Chat usage limits: 20 messages per minute, 2,000 characters per message, history trimmed to 30 messages and at most 5 tool rounds per answer.",
+        "While building the agent, a contact-data leak in public endpoints and a bug that inflated the count of in-progress orders were found and fixed."
       ],
       "media": [
         "Offer catalog with filters",
@@ -300,6 +317,10 @@
           "worker": [
             "Delivery worker",
             "HTTP queue"
+          ],
+          "agent": [
+            "AI support chat",
+            "DeepSeek · 34 tools"
           ]
         },
         "steps": [
@@ -341,15 +362,26 @@
           {
             "title": "Notify both sides",
             "text": "Each user gets a notification on Telegram or WhatsApp, whichever they prefer."
+          },
+          {
+            "title": "Ask the chat",
+            "text": "From any page, the buyer opens the support chat. It answers in the page's language and walks them through the process: how to buy, how to set up a payout method, what each step means.",
+            "code": "POST /api/agente/chat   (20/min, session required)"
+          },
+          {
+            "title": "Real data, only theirs",
+            "text": "If they ask about their order, the model calls a tool (function calling) that queries the database filtered by the session's user. If it can't solve the issue, it opens a ticket for the team.",
+            "code": "buscar_mis_ordenes(usuario_id = session)  →  never another user"
           }
         ]
       }
     },
     "cruces-interinstitucionales": {
       "name": "Inter-agency data cross-check",
-      "summary": "A web system that queries 8 public data sources in parallel from a single ID number and streams progress live with Server-Sent Events.",
+      "summary": "A web system that queries 8 public data sources in parallel from a single ID number, reads image captchas with Gemini Vision and streams progress live with Server-Sent Events.",
       "tags": [
         "Parallel scraping",
+        "AI (Gemini)",
         "Real time",
         "Corlide"
       ],
@@ -357,7 +389,7 @@
       "period": "2026",
       "description": [
         "A team of analysts had to log into 8 government portals one by one (health insurance, social programs, traffic, business registry, social security and notary records) to cross-check each case. Each lookup took several minutes.",
-        "I built a FastAPI app that runs all 8 lookups in parallel. Each scraper runs in its own thread with its own headless Chromium browser (Playwright), with per-source retry settings and parsers that turn different formats into one.",
+        "I built a FastAPI app that runs all 8 lookups in parallel. Each scraper runs in its own thread with its own headless Chromium browser (Playwright), with per-source retry settings and parsers that turn different formats into one. Three of the portals show an image captcha: Gemini Vision (Vertex AI) reads it and, if the reading fails, the scraper retries with a fresh captcha.",
         "The browser gets live progress for each source through Server-Sent Events. At the end, the result is saved to PostgreSQL and a Word report is generated in the official format. It ships as a Docker container on GCP and as a desktop installer."
       ],
       "challenges": [
@@ -376,6 +408,10 @@
         {
           "problem": "Some users' machines couldn't run Docker.",
           "solution": "Two ways to ship it: a container on GCP and an .exe installer (Inno Setup) with a system tray icon."
+        },
+        {
+          "problem": "Three portals (health, traffic and social security) show an image captcha on every lookup.",
+          "solution": "The captcha image is sent to Gemini Vision on Vertex AI, which returns the text. If the portal rejects it, a new captcha is requested and the lookup retries (5 to 10 attempts depending on the source)."
         }
       ],
       "achievements": [
@@ -421,6 +457,10 @@
           "report": [
             "Report .docx",
             "python-docx"
+          ],
+          "gemini": [
+            "Gemini Vision",
+            "image captchas"
           ]
         },
         "steps": [
@@ -440,6 +480,11 @@
           {
             "title": "Automated browsing",
             "text": "Playwright opens the portal, fills in the form and waits for the result. On timeouts or network errors it retries with backoff."
+          },
+          {
+            "title": "Captcha with Gemini",
+            "text": "If the portal shows an image captcha, it's cropped and sent to Gemini Vision (Vertex AI), which returns the text. If the portal rejects it, a new one is requested and the lookup retries.",
+            "code": "gemini-2.5-flash  ·  Vertex AI"
           },
           {
             "title": "Normalize results",
@@ -583,7 +628,7 @@
     },
     "bot-trading": {
       "name": "ML algorithmic trading system",
-      "summary": "4 bots running in parallel with machine learning models validated by walk-forward testing and statistical tests, 25,000 predictions logged to SQLite, and a custom web panel to control them and audit every trade.",
+      "summary": "5 bots running in parallel with machine learning models validated by walk-forward testing and statistical tests, 25,000 predictions logged to SQLite, and a custom web panel to control them and audit every trade.",
       "tags": [
         "Machine learning",
         "Statistical validation",
@@ -593,7 +638,7 @@
       "role": "Author (ML, backend, analysis and web panel)",
       "period": "Jan 2026 – now",
       "description": [
-        "It started as a simple bot and grew into a full algorithmic trading lab on top of a broker's API (forex and crypto). Four bots run in parallel, each with its own supervisor and a watchdog that restarts the connection if the API hangs.",
+        "It started as a simple bot and grew into a full algorithmic trading lab on top of a broker's API (forex and crypto). Five bots run in parallel, each with its own supervisor and a watchdog that restarts the connection if the API hangs.",
         "At its core is a gradient boosting model (scikit-learn) trained on 16 technical indicators and validated with walk-forward testing: it's trained on the past and evaluated only on data it has never seen. An edge is accepted only if its win rate beats the breakeven point, 1 / (1 + payout), with a significant permutation test.",
         "Everything goes into SQLite: every run, every prediction (traded or skipped) and every trade with its latency and actual payout. A custom web panel (a Python HTTP server, about 5,200 lines) starts and stops bots, shows results per model and draws a chart of each trade with what the bot saw when it decided. Results are measured against breakeven, not raw P&L: live, the sample is still small and results are mixed, and that gets reported too."
       ],
@@ -617,12 +662,16 @@
       ],
       "achievements": [
         "2 edges validated with walk-forward testing: EUR/USD 15 min (55.6% win rate, p = 0.0006) and BTC/ETH 15 min (56–58%), above the 52.6% breakeven.",
+        "ETH 5m RSI: 58.2% win rate over 4,395 trades (backtest plus 46 live, at 60%), against a 53.76% breakeven.",
         "25,240 predictions and 749 trades logged with full traceability (January to November 2026).",
         "10 models and strategies evaluated; those that failed the statistical test were dropped before scaling up.",
         "A web panel to run multiple bots and accounts, shareable over an SSH tunnel.",
         "Packaged with Docker, a Windows installer and a licensing system."
       ],
       "media": [
+        "Custom web panel: the ETH 5m RSI bot with 4,395 trades (backtest + live), 58.2% win rate against a 53.76% breakeven",
+        "The panel audits itself: 'is the confidence threshold useful?' compares the win rate of traded vs. skipped signals",
+        "Live trade log with entry and exit price, move and result",
         "Live trade from the ML model (BTC/USD, 15 min) with the 16 indicators it saw when deciding",
         "Forensic analysis: candle-by-candle rebuild of a real cycle to measure a bug's impact",
         "Backtest with n = 7,022: the strategy fell below breakeven and was discarded"
@@ -638,7 +687,7 @@
             "WebSocket"
           ],
           "bots": [
-            "4 bots",
+            "5 bots",
             "supervisor + watchdog"
           ],
           "model": [
