@@ -394,8 +394,8 @@
       "description": [
         "A team of analysts had to log into 8 government portals one by one (health insurance, social programs, traffic, business registry, social security and notary records) to cross-check each case. Each lookup took several minutes.",
         "I built a FastAPI app that runs all 8 lookups in parallel. Each scraper runs in its own thread with its own headless Chromium browser (Playwright), with per-source retry settings and parsers that turn different formats into one. Three of the portals show an image captcha: Gemini Vision (Vertex AI) reads it and, if the reading fails, the scraper retries with a fresh captcha.",
-        "Besides single lookups, the app supports batch lookups from CSV or Excel (resumable: it skips people already checked), RUNT lookups by license plate, FASECOLDA, generating the Word report and an Excel evidence matrix, and a mode that reads requests from Google Sheets and uploads the PDFs and the cross-check form to Google Drive.",
-        "The browser gets live progress for each source through Server-Sent Events. At the end, the result is saved to PostgreSQL and a Word report is generated in the official format. It ships as a Docker container on GCP and as a desktop installer."
+        "The browser gets live progress for each source through Server-Sent Events. At the end, the result is saved to PostgreSQL and a Word report is generated in the official format. It ships as a Docker container on GCP and as a desktop installer.",
+        "With use, the app grew to 8 modules: single lookups (8 ID document types, including PEP, PPT and refugee safe-conduct); batch lookups from CSV or Excel that can resume without repeating people, start from scratch, or only download missing evidence PDFs; RUNT lookups by plate and owner; vehicle market value from FASECOLDA by VIN; Word report generation from the database, single or in batch, without querying the portals again; an Excel evidence matrix (one row per person, yes/no per source); a mode that reads requests from Google Sheets, queries only what's missing and uploads the PDFs and cross-check form to Google Drive; and a Gemini usage dashboard with daily quota and cost projection. It also handles multiple Supernotariado accounts."
       ],
       "challenges": [
         {
@@ -421,7 +421,7 @@
       ],
       "achievements": [
         "All 8 lookups run at the same time instead of one after another by hand.",
-        "Resumable batch lookups from CSV or Excel, with evidence PDF downloads, an Excel matrix and Google Sheets/Drive integration.",
+        "8 modules in one app: single and batch lookups, RUNT by plate, FASECOLDA, Word report and Excel matrix from the database, Google Sheets and Drive integration, and an AI cost dashboard.",
         "Custom Gemini usage dashboard: 1,361 captcha readings in 30 days for US$0.24, with 98.4% successful lookups on RUAF and 99.4% on RUNT, and 1.1 to 1.7 calls per lookup.",
         "Live progress for each source, with clear statuses for the analyst.",
         "Word reports generated automatically in the official format.",
