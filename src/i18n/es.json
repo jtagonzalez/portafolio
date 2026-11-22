@@ -634,7 +634,7 @@
       "tags": [
         "Machine learning",
         "Validación estadística",
-        "Tiempo real",
+        "Dashboard web",
         "Proyecto personal"
       ],
       "role": "Autor (ML, backend, análisis y panel web)",
@@ -642,12 +642,16 @@
       "description": [
         "Empezó como un bot sencillo y terminó siendo un laboratorio completo de trading algorítmico sobre la API de un broker (forex y cripto). Corren 3 bots en paralelo, cada uno con su supervisor y un watchdog que relanza la conexión si la API se cuelga.",
         "El núcleo es un modelo de gradient boosting (scikit-learn) entrenado con 16 indicadores técnicos y validado con walk-forward: se entrena con el pasado y se evalúa solo con datos que nunca vio. Un edge solo se acepta si su tasa de acierto supera el punto de equilibrio, 1 / (1 + payout), con un test de permutación significativo.",
-        "Todo queda en SQLite: cada arranque, cada predicción (operada o descartada) y cada operación con su latencia y payout real. Un panel web propio (servidor HTTP en Python, unas 5.200 líneas) arranca y detiene bots, muestra resultados por modelo y genera la gráfica de cada operación con lo que el bot vio al decidir. Los resultados se miden contra el punto de equilibrio y no contra el P&L a secas. Cada estrategia pasa por tres etapas: backtest sobre velas históricas (enero a noviembre de 2026), cuenta de práctica y, solo si el resultado se sostiene, cuenta real. Hoy solo ETH 5m (estocástico) opera en cuenta real, y replica lo que mostró su backtest. ETH 5m RSI y BTC 5m siguen en práctica."
+        "Todo queda en SQLite: cada arranque, cada predicción (operada o descartada) y cada operación con su latencia y payout real. Para visualizar y analizar los resultados construí un panel web de estadística desde cero (servidor HTTP en Python de unas 5.200 líneas, JavaScript y gráficas SVG hechas a mano): por cada bot muestra el acierto frente al punto de equilibrio, la curva de P&L, la caída máxima y las rachas, filtra por periodo, exporta a CSV, arranca y detiene bots, y genera la gráfica de cada operación con lo que el bot vio al decidir. Los resultados se miden contra el punto de equilibrio y no contra el P&L a secas. Cada estrategia pasa por tres etapas: backtest sobre velas históricas (enero a noviembre de 2026), cuenta de práctica y, solo si el resultado se sostiene, cuenta real. Hoy solo ETH 5m (estocástico) opera en cuenta real, y replica lo que mostró su backtest. ETH 5m RSI y BTC 5m siguen en práctica."
       ],
       "challenges": [
         {
           "problem": "Un backtest mostraba 11 puntos de acierto que en realidad no existían.",
           "solution": "Encontré el sesgo: el backtester contaba los empates a favor. Desde entonces toda estrategia se contrasta primero con la tasa base del mercado crudo."
+        },
+        {
+          "problem": "Hacía falta saber si el filtro de confianza del modelo realmente mejoraba algo o solo reducía operaciones.",
+          "solution": "El panel compara el acierto de las señales operadas contra las descartadas ('¿sirve el umbral?') y muestra por qué el bot no operó en cada caso. Si lo descartado acierta igual que lo operado, el filtro no está seleccionando nada."
         },
         {
           "problem": "Muchas estrategias 'ganadoras' en el histórico eran pura suerte.",
@@ -668,7 +672,7 @@
         "Backtests sobre velas históricas de enero a noviembre de 2026 (operaciones simuladas, no ejecutadas): ETH 5m RSI 58,2 % en 4.395 y BTC 5m 56,7 % en 6.109. Ambos operan hoy en cuenta de práctica.",
         "25.240 predicciones y 749 operaciones registradas con trazabilidad completa (enero a noviembre de 2026).",
         "10 modelos y estrategias evaluados; los que no pasaron la prueba estadística se descartaron antes de escalarlos.",
-        "Panel web para operar varios bots y cuentas, compartible por túnel SSH.",
+        "Panel web de estadística hecho desde cero (Python sin framework, unos 18 endpoints REST, JavaScript y gráficas SVG propias): acierto contra punto de equilibrio, curva de P&L, caída máxima, rachas, P&L por día y por activo, filtros por periodo y zona horaria, exportación a CSV, varias cuentas, actualización cada 5 segundos y en español e inglés. Se puede compartir por túnel SSH.",
         "Empaquetado con Docker, instalador para Windows y sistema de licencias."
       ],
       "media": [
