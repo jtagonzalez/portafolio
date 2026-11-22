@@ -640,7 +640,7 @@
       "description": [
         "Empezó como un bot sencillo y terminó siendo un laboratorio completo de trading algorítmico sobre la API de un broker (forex y cripto). Corren 5 bots en paralelo, cada uno con su supervisor y un watchdog que relanza la conexión si la API se cuelga.",
         "El núcleo es un modelo de gradient boosting (scikit-learn) entrenado con 16 indicadores técnicos y validado con walk-forward: se entrena con el pasado y se evalúa solo con datos que nunca vio. Un edge solo se acepta si su tasa de acierto supera el punto de equilibrio, 1 / (1 + payout), con un test de permutación significativo.",
-        "Todo queda en SQLite: cada arranque, cada predicción (operada o descartada) y cada operación con su latencia y payout real. Un panel web propio (servidor HTTP en Python, unas 5.200 líneas) arranca y detiene bots, muestra resultados por modelo y genera la gráfica de cada operación con lo que el bot vio al decidir. Los resultados se miden contra el punto de equilibrio y no contra el P&L a secas: en vivo, la muestra todavía es pequeña y los resultados son mixtos, y eso también se reporta."
+        "Todo queda en SQLite: cada arranque, cada predicción (operada o descartada) y cada operación con su latencia y payout real. Un panel web propio (servidor HTTP en Python, unas 5.200 líneas) arranca y detiene bots, muestra resultados por modelo y genera la gráfica de cada operación con lo que el bot vio al decidir. Los resultados se miden contra el punto de equilibrio y no contra el P&L a secas. Cada estrategia pasa por tres etapas: backtest sobre velas históricas (enero a noviembre de 2026), cuenta de práctica y, solo si el resultado se sostiene, cuenta real. Hoy ETH 5m (estocástico) opera en cuenta real y replica lo que mostró el backtest; los demás bots siguen en práctica."
       ],
       "challenges": [
         {
@@ -662,14 +662,15 @@
       ],
       "achievements": [
         "2 edges validados con walk-forward: EUR/USD 15 min (55,6 % de acierto, p = 0,0006) y BTC/ETH 15 min (56–58 %), por encima del punto de equilibrio de 52,6 %.",
-        "ETH 5m RSI: 58,2 % de acierto en 4.395 operaciones (backtest más 46 en vivo, con 60 %), frente a un punto de equilibrio de 53,76 %.",
+        "ETH 5m (estocástico) opera hoy en cuenta real: 60,7 % de acierto (17 ganadas y 11 perdidas) frente a un equilibrio de 54,9 %, en línea con su backtest sobre datos históricos (61,1 % en 2.091 operaciones).",
+        "Backtests sobre velas históricas de enero a noviembre de 2026 (operaciones simuladas, no ejecutadas): ETH 5m RSI 58,2 % en 4.395 y BTC 5m 56,7 % en 6.109. Ambos operan hoy en cuenta de práctica.",
         "25.240 predicciones y 749 operaciones registradas con trazabilidad completa (enero a noviembre de 2026).",
         "10 modelos y estrategias evaluados; los que no pasaron la prueba estadística se descartaron antes de escalarlos.",
         "Panel web para operar varios bots y cuentas, compartible por túnel SSH.",
         "Empaquetado con Docker, instalador para Windows y sistema de licencias."
       ],
       "media": [
-        "Panel web propio: el bot ETH 5m RSI con 4.395 operaciones (backtest + en vivo), 58,2 % de acierto frente a un equilibrio de 53,76 %",
+        "Panel web propio: ETH 5m RSI con 4.395 operaciones de backtest sobre datos históricos (58,2 % de acierto frente a un equilibrio de 53,76 %); hoy opera en cuenta de práctica",
         "El panel se autoevalúa: '¿sirve el umbral de confianza?' compara el acierto de lo operado contra lo descartado",
         "Registro de operaciones en vivo con precio de entrada y salida, movimiento y resultado",
         "Operación en vivo del modelo ML (BTC/USD, 15 min) con los 16 indicadores que vio al decidir",
@@ -728,7 +729,7 @@
           },
           {
             "title": "Orden",
-            "text": "Si pasa el filtro, se envía la orden (por defecto en la cuenta de práctica)."
+            "text": "Si pasa el filtro, se envía la orden. Cada bot tiene su modo: ETH 5m opera en cuenta real; el resto, en práctica hasta demostrar que el backtest se sostiene."
           },
           {
             "title": "Registrar todo",
