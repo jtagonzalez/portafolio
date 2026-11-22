@@ -10,5 +10,5 @@ export const SITE = {
   // Opcional: si quieres mostrar correo, ponlo aquí (queda público en el sitio)
   email: '',
   // Repositorio de este portafolio (opcional, aparece en el pie)
-  sourceRepo: '',
+  sourceRepo: 'https://github.com/jtagonzalez/portafolio',
 }
