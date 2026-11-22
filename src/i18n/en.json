@@ -662,7 +662,7 @@
       ],
       "achievements": [
         "2 edges validated with walk-forward testing: EUR/USD 15 min (55.6% win rate, p = 0.0006) and BTC/ETH 15 min (56–58%), above the 52.6% breakeven.",
-        "ETH 5m (stochastic) now trades on a real-money account: 60.7% win rate (17 wins, 11 losses) against a 54.9% breakeven, in line with its backtest on historical data (61.1% over 2,091 trades).",
+        "ETH 5m (stochastic) now trades on a real-money account: 60.7% win rate (17 wins, 11 losses) against a 54.9% breakeven at the actual payout received (82%), in line with its backtest on historical data (61.1% over 2,091 trades).",
         "Backtests on historical candles from January to November 2026 (simulated, not executed trades): ETH 5m RSI 58.2% over 4,395 and BTC 5m 56.7% over 6,109. Both trade on practice accounts today.",
         "25,240 predictions and 749 trades logged with full traceability (January to November 2026).",
         "10 models and strategies evaluated; those that failed the statistical test were dropped before scaling up.",
@@ -670,6 +670,7 @@
         "Packaged with Docker, a Windows installer and a licensing system."
       ],
       "media": [
+        "Real account: cumulative P&L of the ETH 5m (stochastic) bot, one mark per trade: 28 trades, 60.7% win rate, $3 max drawdown",
         "Custom web panel: ETH 5m RSI with 4,395 backtest trades on historical data (58.2% win rate against a 53.76% breakeven); it trades on a practice account today",
         "The panel audits itself: 'is the confidence threshold useful?' compares the win rate of traded vs. skipped signals",
         "Live trade log with entry and exit price, move and result",

@@ -662,7 +662,7 @@
       ],
       "achievements": [
         "2 edges validados con walk-forward: EUR/USD 15 min (55,6 % de acierto, p = 0,0006) y BTC/ETH 15 min (56–58 %), por encima del punto de equilibrio de 52,6 %.",
-        "ETH 5m (estocástico) opera hoy en cuenta real: 60,7 % de acierto (17 ganadas y 11 perdidas) frente a un equilibrio de 54,9 %, en línea con su backtest sobre datos históricos (61,1 % en 2.091 operaciones).",
+        "ETH 5m (estocástico) opera hoy en cuenta real: 60,7 % de acierto (17 ganadas y 11 perdidas) frente a un equilibrio de 54,9 % con el payout real cobrado (82 %), en línea con su backtest sobre datos históricos (61,1 % en 2.091 operaciones).",
         "Backtests sobre velas históricas de enero a noviembre de 2026 (operaciones simuladas, no ejecutadas): ETH 5m RSI 58,2 % en 4.395 y BTC 5m 56,7 % en 6.109. Ambos operan hoy en cuenta de práctica.",
         "25.240 predicciones y 749 operaciones registradas con trazabilidad completa (enero a noviembre de 2026).",
         "10 modelos y estrategias evaluados; los que no pasaron la prueba estadística se descartaron antes de escalarlos.",
@@ -670,6 +670,7 @@
         "Empaquetado con Docker, instalador para Windows y sistema de licencias."
       ],
       "media": [
+        "Cuenta real: P&L acumulado del bot ETH 5m (estocástico), una marca por operación: 28 operaciones, 60,7 % de acierto, caída máxima de $3",
         "Panel web propio: ETH 5m RSI con 4.395 operaciones de backtest sobre datos históricos (58,2 % de acierto frente a un equilibrio de 53,76 %); hoy opera en cuenta de práctica",
         "El panel se autoevalúa: '¿sirve el umbral de confianza?' compara el acierto de lo operado contra lo descartado",
         "Registro de operaciones en vivo con precio de entrada y salida, movimiento y resultado",

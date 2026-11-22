@@ -133,6 +133,7 @@ export const PROJECTS = [
     techs: ['python', 'sklearn', 'scipy', 'pandas', 'numpy', 'websocket', 'sqlite', 'matplotlib', 'docker', 'javascript', 'html'],
     cover: '/media/bot-trading/cover.webp',
     media: [
+      { type: 'image', src: '/media/bot-trading/panel-eth5m-real.webp', focus: 'center 85%' },
       { type: 'image', src: '/media/bot-trading/panel-resumen-eth5m.webp' },
       { type: 'image', src: '/media/bot-trading/panel-umbral.webp' },
       { type: 'image', src: '/media/bot-trading/panel-operaciones.webp' },

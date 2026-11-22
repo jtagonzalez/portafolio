@@ -31,7 +31,8 @@ export default function MediaGallery({ media, captions = [] }) {
           <span className="live-badge" aria-hidden="true">{t('detail.liveReport')}</span>
         </>
       )
-    return <img src={m.src} alt="" loading="lazy" />
+    // `focus` (opcional) = qué parte de la imagen se ve en la miniatura, p. ej. 'bottom' o 'center top'
+    return <img src={m.src} alt="" loading="lazy" style={m.focus ? { objectPosition: m.focus } : undefined} />
   }
 
   return (
