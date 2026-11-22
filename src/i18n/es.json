@@ -24,7 +24,7 @@
     "titleA": "Construyo backends en Python que ",
     "titleHl": "automatizan",
     "titleB": " procesos reales.",
-    "pitch": "Desarrollador backend en Medellín. Hago APIs con FastAPI y PostgreSQL, automatización con Playwright y agentes de IA con Claude. Tengo un marketplace propio en producción con pagos y escrow on-chain.",
+    "pitch": "Desarrollador backend en Medellín. Hago APIs con FastAPI y PostgreSQL, automatización con Playwright y agentes de IA con Claude. Soy cofundador de un marketplace en producción con pagos y escrow on-chain.",
     "seeking": "Busco un rol de desarrollador backend, automatización o IA (remoto o en Medellín).",
     "available": "Disponible para nuevas oportunidades",
     "ctaProjects": "Ver proyectos",
@@ -199,8 +199,8 @@
         "period": "Sep 2026 – hoy",
         "type": "dev",
         "now": true,
-        "title": "Fundador y desarrollador",
-        "org": "KamasMarket (proyecto propio)",
+        "title": "Cofundador y desarrollador",
+        "org": "KamasMarket (cofundador)",
         "text": "Marketplace P2P en producción con escrow en Solidity, pagos USDT y fiat, y SEO en 3 idiomas."
       },
       {
@@ -290,7 +290,7 @@
         "Agentes IA",
         "SEO ES/EN/FR"
       ],
-      "role": "Fundador y único desarrollador (full stack)",
+      "role": "Cofundador y desarrollador full stack",
       "period": "Sep 2026 – hoy",
       "description": [
         "KamasMarket es un marketplace entre personas para comprar y vender kamas (la moneda de Dofus Retro). Como los dos lados no se conocen, el dinero queda en custodia hasta confirmar la entrega.",
