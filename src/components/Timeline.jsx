@@ -6,7 +6,8 @@ import { useI18n } from '../context/i18n.jsx'
 export default function Timeline() {
   const { t } = useI18n()
   const [filter, setFilter] = useState('all')
-  const items = t('about.timeline').filter((it) => filter === 'all' || it.type === filter)
+  // En el JSON van en orden cronológico; se muestran al revés: lo más reciente primero
+  const items = [...t('about.timeline')].reverse().filter((it) => filter === 'all' || it.type === filter)
   return (
     <>
       <ToggleButtonGroup type="radio" name="tl-filter" value={filter} onChange={setFilter} className="tl-filter mb-4 flex-wrap" aria-label={t('about.timelineTitle')}>

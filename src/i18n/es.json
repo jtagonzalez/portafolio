@@ -202,6 +202,14 @@
         "title": "Fundador y desarrollador",
         "org": "KamasMarket (proyecto propio)",
         "text": "Marketplace P2P en producción con escrow en Solidity, pagos USDT y fiat, y SEO en 3 idiomas."
+      },
+      {
+        "period": "Nov 2026 – en curso",
+        "type": "dev",
+        "now": true,
+        "title": "Ingeniería de Sistemas",
+        "org": "CUN (Corporación Unificada Nacional de Educación Superior)",
+        "text": "Inicié la carrera el 23 de noviembre de 2026 para profundizar en arquitectura de software, sistemas distribuidos y bases de datos, mientras sigo trabajando como desarrollador."
       }
     ],
     "skillsTitle": "Stack técnico",
