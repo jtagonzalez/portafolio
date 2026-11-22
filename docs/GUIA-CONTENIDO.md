@@ -23,6 +23,17 @@ Todo el contenido está en 3 lugares:
    `{problem, solution}`), `achievements`, `media` (pies de foto, uno por imagen) y `diagram`.
 3. Corre `npm run placeholders` para generar una portada y capturas de relleno mientras consigues las reales.
 
+**Tabla de estado (opcional):** si un proyecto tiene varias piezas en distintos estados (por ejemplo bots en
+real, práctica o backtest), agrega `statusTable` en `projectsContent.<slug>` de cada JSON:
+```json
+"statusTable": {
+  "cols": ["Bot", "Opera hoy en", "Backtest histórico", "Resultado ejecutado"],
+  "rows": [ { "bot": "ETH 5m", "mode": "real", "label": "Cuenta real", "backtest": "61,1 %", "live": "60,7 %" } ]
+}
+```
+`mode` puede ser `real` (etiqueta coral y borde), `practice` o `demoted` (gris). Aparece como sección "Estado"
+en el detalle y en celular se muestra como tarjetas.
+
 ## 2. El diagrama de arquitectura
 
 El lienzo mide 840 × 400. Cada nodo se centra en `(x, y)`. Las columnas que ya se usan son x = 90, 262, 450 y 660,

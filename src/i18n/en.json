@@ -121,7 +121,9 @@
     "nextProject": "Next",
     "anonymized": "All data shown is fictitious or anonymized.",
     "openReport": "Open report in a new tab",
-    "liveReport": "Real report"
+    "liveReport": "Real report",
+    "status": "Status of each bot",
+    "statusNote": "Backtest = simulated trades on historical candles, not executed. Practice = the broker's demo account (play money). Real = real money. Data from live.db as of November 22, 2026."
   },
   "diagram": {
     "intro": "Follow a request as it travels through the system. Use the buttons or arrow keys, or click any component.",
@@ -640,9 +642,13 @@
       "description": [
         "It started as a simple bot and grew into a full algorithmic trading lab on top of a broker's API (forex and crypto). Five bots run in parallel, each with its own supervisor and a watchdog that restarts the connection if the API hangs.",
         "At its core is a gradient boosting model (scikit-learn) trained on 16 technical indicators and validated with walk-forward testing: it's trained on the past and evaluated only on data it has never seen. An edge is accepted only if its win rate beats the breakeven point, 1 / (1 + payout), with a significant permutation test.",
-        "Everything goes into SQLite: every run, every prediction (traded or skipped) and every trade with its latency and actual payout. A custom web panel (a Python HTTP server, about 5,200 lines) starts and stops bots, shows results per model and draws a chart of each trade with what the bot saw when it decided. Results are measured against breakeven, not raw P&L. Every strategy goes through three stages: a backtest on historical candles (January to November 2026), a practice account and, only if the results hold up, a real-money account. Today ETH 5m (stochastic) trades on the real account and matches what its backtest showed; the other bots are still on practice."
+        "Everything goes into SQLite: every run, every prediction (traded or skipped) and every trade with its latency and actual payout. A custom web panel (a Python HTTP server, about 5,200 lines) starts and stops bots, shows results per model and draws a chart of each trade with what the bot saw when it decided. Results are measured against breakeven, not raw P&L. Every strategy goes through three stages: a backtest on historical candles (January to November 2026), a practice account and, only if the results hold up, a real-money account. Today only ETH 5m (stochastic) trades with real money, and it matches what its backtest showed. ETH 5m RSI and BTC 5m are still on practice. Both Weis variants reached real money, didn't hold up to their backtest and were moved back to practice: the process is also there to stop things in time."
       ],
       "challenges": [
+        {
+          "problem": "One strategy (Weis CALL) had a 65.5% win rate in backtesting and dropped to 39% with real money.",
+          "solution": "Tracking against breakeven caught it within a few weeks (52 trades) and the bot was moved back to practice. Now no strategy goes to real money without a practice stage that confirms its backtest first."
+        },
         {
           "problem": "A backtest showed an 11-point win-rate boost that didn't actually exist.",
           "solution": "I found the bias: the backtester counted ties as wins. Since then, every strategy is checked first against the raw market's base rate."
@@ -671,7 +677,7 @@
       ],
       "media": [
         "Real account: cumulative P&L of the ETH 5m (stochastic) bot, one mark per trade: 28 trades, 60.7% win rate, $3 max drawdown",
-        "Custom web panel: ETH 5m RSI with 4,395 backtest trades on historical data (58.2% win rate against a 53.76% breakeven); it trades on a practice account today",
+        "Custom web panel: ETH 5m RSI with 4,395 backtest trades on historical data (58.2% against a 53.76% breakeven); it trades on practice today. The amounts in the top bar include the backtest",
         "The panel audits itself: 'is the confidence threshold useful?' compares the win rate of traded vs. skipped signals",
         "Live trade log with entry and exit price, move and result",
         "Live trade from the ML model (BTC/USD, 15 min) with the 16 indicators it saw when deciding",
@@ -744,6 +750,51 @@
           {
             "title": "Control",
             "text": "Bots and accounts are started and stopped from the panel, without touching the console."
+          }
+        ]
+      },
+      "statusTable": {
+        "cols": [
+          "Bot",
+          "Trades today on",
+          "Historical backtest",
+          "Executed results"
+        ],
+        "rows": [
+          {
+            "bot": "ETH 5m (stochastic)",
+            "mode": "real",
+            "label": "Real account",
+            "backtest": "61.1% (2,091 trades, Jan–Nov 2026)",
+            "live": "Real: 17 wins / 11 losses = 60.7%, +$2.94. Ran 13 practice trades first."
+          },
+          {
+            "bot": "ETH 5m RSI",
+            "mode": "practice",
+            "label": "Practice",
+            "backtest": "58.2% (4,395 trades, Jan–Nov 2026)",
+            "live": "Practice: 27 wins / 19 losses = 58.7%. Not on real money yet."
+          },
+          {
+            "bot": "BTC 5m",
+            "mode": "practice",
+            "label": "Practice",
+            "backtest": "56.7% (6,109 trades, Jan–Nov 2026)",
+            "live": "Practice: 1 trade. Sample too small."
+          },
+          {
+            "bot": "Weis CALL",
+            "mode": "demoted",
+            "label": "Moved back to practice",
+            "backtest": "65.5% (287 trades, Jul–Oct 2026)",
+            "live": "Real: 20 wins / 31 losses = 39%, −$35.25. The backtest didn't hold, so it went back to practice."
+          },
+          {
+            "bot": "Weis CALL M (progression)",
+            "mode": "demoted",
+            "label": "Moved back to practice",
+            "backtest": "64.5% (293 trades, Jul–Oct 2026)",
+            "live": "Real: 5 losses in one day, then stopped. Practice: 17 wins / 20 losses."
           }
         ]
       }

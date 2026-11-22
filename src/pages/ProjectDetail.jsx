@@ -6,6 +6,7 @@ import { getProject, PROJECTS } from '../content/projects.js'
 import TechLogo from '../components/TechLogo.jsx'
 import ArchitectureDiagram from '../components/ArchitectureDiagram.jsx'
 import MediaGallery from '../components/MediaGallery.jsx'
+import StatusTable from '../components/StatusTable.jsx'
 import NotFound from './NotFound.jsx'
 import { ArrowLeft, Arrow, External, GitHub, Lock } from '../components/Icons.jsx'
 
@@ -24,6 +25,7 @@ export default function ProjectDetail() {
 
   const sections = [
     ['overview', t('detail.overview')],
+    ...(text.statusTable ? [['status', t('detail.status')]] : []),
     ['architecture', t('detail.architecture')],
     ['stack', t('detail.stack')],
     ['demo', t('detail.demo')],
@@ -93,6 +95,13 @@ export default function ProjectDetail() {
               ))}
               {project.status === 'work' && <p className="small text-muted-2 fst-italic">{t('detail.anonymized')}</p>}
             </section>
+
+            {text.statusTable && (
+              <section id="status" className="mb-5" aria-labelledby="h-status">
+                <h2 id="h-status" className="h3 mb-3">{t('detail.status')}</h2>
+                <StatusTable table={text.statusTable} note={t('detail.statusNote')} />
+              </section>
+            )}
 
             <section id="architecture" className="mb-5" aria-labelledby="h-arch">
               <h2 id="h-arch" className="h3 mb-3">{t('detail.architecture')}</h2>
