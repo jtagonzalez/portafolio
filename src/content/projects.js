@@ -57,10 +57,11 @@ export const PROJECTS = [
     featured: true,
     status: 'work',
     techs: ['python', 'fastapi', 'playwright', 'chromium', 'gemini', 'sse', 'postgresql', 'javascript', 'html', 'css', 'docker', 'gcp'],
-    cover: '/media/cruces-interinstitucionales/cover.svg',
+    cover: '/media/cruces-interinstitucionales/cover.webp',
     media: [
-      { type: 'image', src: ph('cruces-interinstitucionales', 1) },
-      { type: 'image', src: ph('cruces-interinstitucionales', 2) },
+      { type: 'image', src: '/media/cruces-interinstitucionales/consulta-individual.webp' },
+      { type: 'image', src: '/media/cruces-interinstitucionales/consulta-masiva.webp' },
+      { type: 'image', src: '/media/cruces-interinstitucionales/uso-gemini.webp' },
     ],
     links: { live: null, repo: null },
     diagram: {

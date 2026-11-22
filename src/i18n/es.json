@@ -394,6 +394,7 @@
       "description": [
         "Un equipo de analistas tenía que entrar uno por uno a 8 portales del Estado (salud, SISBEN, tránsito, registro mercantil, seguridad social y notariado) para armar el cruce de información de cada caso. Cada consulta tomaba varios minutos.",
         "Construí una aplicación con FastAPI que lanza las 8 consultas en paralelo. Cada scraper corre en su propio hilo con un navegador Chromium headless independiente (Playwright), con reintentos configurables por fuente y parsers que normalizan resultados heterogéneos. Tres de los portales piden un captcha de imagen: lo identifica Gemini Vision (Vertex AI) y, si la lectura falla, el scraper reintenta con un captcha nuevo.",
+        "Además de la consulta individual, la app tiene consulta masiva desde CSV o Excel (reanudable: salta a las personas ya consultadas), consulta RUNT por placa, FASECOLDA, generación del informe Word y de una matriz Excel de evidencias, y un modo que lee las solicitudes desde Google Sheets y sube los PDF y el formato de cruce a Google Drive.",
         "El navegador recibe el avance de cada fuente en tiempo real por Server-Sent Events. Al final se guarda el resultado en PostgreSQL y se genera el informe en Word con el formato oficial. Se distribuye como contenedor Docker en GCP y como instalador de escritorio."
       ],
       "challenges": [
@@ -420,13 +421,16 @@
       ],
       "achievements": [
         "Las 8 consultas corren al mismo tiempo, en vez de una tras otra a mano.",
+        "Consulta masiva desde CSV o Excel, reanudable, con descarga de PDF de evidencia, matriz Excel e integración con Google Sheets y Drive.",
+        "Tablero propio de uso de Gemini: 1.361 lecturas de captcha en 30 días por US$ 0,24, con 98,4 % de consultas exitosas en RUAF y 99,4 % en RUNT, y entre 1,1 y 1,7 llamadas por consulta.",
         "Progreso en tiempo real por fuente, con estados claros para el analista.",
         "Informe Word generado automáticamente con el formato institucional.",
         "Autor de 50 de los 55 commits del repositorio."
       ],
       "media": [
-        "Pantalla de consulta con progreso por fuente (datos de ejemplo)",
-        "Informe generado (datos anonimizados)"
+        "Consulta individual: tipo y número de documento, y selección de las 8 fuentes (sin datos de personas)",
+        "Consulta masiva desde CSV o Excel: reanudar sin repetir personas ya consultadas, descarga de PDF de evidencia y guardado en disco",
+        "Tablero propio de uso de Gemini: llamadas, tokens y costo por fuente y por día (1.361 llamadas en 30 días por US$ 0,24)"
       ],
       "diagram": {
         "nodes": {
@@ -488,7 +492,7 @@
           {
             "title": "Captcha con Gemini",
             "text": "Si el portal muestra un captcha de imagen, se recorta y se envía a Gemini Vision (Vertex AI), que devuelve el texto. Si el portal lo rechaza, se pide uno nuevo y se reintenta.",
-            "code": "gemini-2.5-flash  ·  Vertex AI"
+            "code": "gemini-3.5-flash-lite  ·  Vertex AI"
           },
           {
             "title": "Normalizar resultados",
